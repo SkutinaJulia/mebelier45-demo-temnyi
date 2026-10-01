@@ -491,31 +491,32 @@
             <div class="work__empty" aria-hidden="true"><span class="v-label">Фото работы</span><b>assets/work-6-kuhnya-grafit.jpg</b></div>
             <figcaption><b>Графитовая кухня до потолка</b><br>Колонна под духовку и СВЧ, ниша под большой холодильник</figcaption>
           </figure></li>
-                  <li class="work"><figure>
+                  <li class="work work--more"><figure>
             <img class="work__img" alt="Работа 7: Угловая кухня: белый верх и пенал под дерево" data-src="assets/work-7-kuhnya-uglovaya-belaya.jpg" width="897" height="1600" loading="lazy">
             <figcaption><b>Угловая кухня: белый верх и пенал под дерево</b><br>Фартук и столешница под дерево, встроенная духовка</figcaption>
           </figure></li>
-          <li class="work"><figure>
+          <li class="work work--more"><figure>
             <img class="work__img" alt="Работа 8: П-образная кухня под светлое дерево" data-src="assets/work-8-kuhnya-p-obraznaya.jpg" width="1600" height="1200" loading="lazy">
             <figcaption><b>П-образная кухня под светлое дерево</b><br>Подсветка рабочей зоны, встроенная техника</figcaption>
           </figure></li>
-          <li class="work"><figure>
+          <li class="work work--more"><figure>
             <img class="work__img" alt="Работа 9: Кухня под светлый бетон до потолка" data-src="assets/work-9-kuhnya-beton.jpg" width="1200" height="1600" loading="lazy">
             <figcaption><b>Кухня под светлый бетон до потолка</b><br>Пеналы с длинными ручками, темная столешница</figcaption>
           </figure></li>
-          <li class="work"><figure>
+          <li class="work work--more"><figure>
             <img class="work__img" alt="Работа 10: Бежевая кухня в частном доме" data-src="assets/work-10-kuhnya-v-dome.jpg" width="1600" height="1200" loading="lazy">
             <figcaption><b>Бежевая кухня в частном доме</b><br>Фартук под мрамор, вытяжка в шкафу</figcaption>
           </figure></li>
-          <li class="work"><figure>
+          <li class="work work--more"><figure>
             <img class="work__img" alt="Работа 11: Шкаф под темное дерево" data-src="assets/work-11-shkaf-temnoe-derevo.jpg" width="1200" height="1600" loading="lazy">
             <figcaption><b>Шкаф под темное дерево</b><br>Двери до потолка, открытые полки сбоку</figcaption>
           </figure></li>
-          <li class="work"><figure>
+          <li class="work work--more"><figure>
             <img class="work__img" alt="Работа 12: Шкаф вокруг дверного проема" data-src="assets/work-12-shkaf-vokrug-dveri.jpg" width="1280" height="960" loading="lazy">
             <figcaption><b>Шкаф вокруг дверного проема</b><br>Фасады без ручек, полки и ящики под дерево</figcaption>
           </figure></li>
         </ul>
+        <div class="works__more"><button class="works__btn" type="button" aria-expanded="false" data-more="Показать еще работы" data-less="Свернуть">Показать еще работы</button></div>
       </div>
     </section>
 
@@ -747,6 +748,11 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
 });
 </script><style>
   .work .work__img { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .works__grid:not(.is-open) .work--more { display: none !important; }
+  .works__more { display: flex; justify-content: center; margin-top: var(--v-6); }
+  .v-page .works__btn { font: inherit; font-weight: 600; font-size: 1rem; color: #f2efe9; background: transparent; border: 1px solid rgb(242 239 233 / .45) !important; border-radius: 999px; padding: .85em 1.8em; cursor: pointer; transition: border-color .2s, background .2s; }
+  .v-page .works__btn:hover { border-color: #d99a3e !important; background: rgb(217 154 62 / .1); }
+  .v-page .works__btn:focus-visible { outline: 2px solid #d99a3e; outline-offset: 3px; }
   .work:hover .work__img { transform: scale(1.035); }
   @media (min-width: 1001px) {
     .v-page .works__grid { display: block; columns: 3; column-gap: var(--v-5); }
@@ -760,7 +766,19 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
     .v-page .works__grid .work figcaption b { font-size: .72rem; display: block; }
     .v-page .works__grid .work.is-photo::after { height: 40%; background: linear-gradient(to top, rgb(0 0 0 / .8), rgb(0 0 0 / 0)); }
   }
-</style><style>
+</style>
+<script>
+(function () {
+  var b = document.querySelector('.works__btn'), g = document.querySelector('.works__grid');
+  if (!b || !g) return;
+  b.addEventListener('click', function () {
+    var open = g.classList.toggle('is-open');
+    b.textContent = open ? b.getAttribute('data-less') : b.getAttribute('data-more');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (!open) document.getElementById('raboty').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script><style>
   .work figure { cursor: zoom-in; }
   .lb { position: fixed; inset: 0; z-index: 1000; display: none; align-items: center; justify-content: center; background: rgb(8 10 9 / .98); padding: 3.5rem 4.5rem 5.5rem; font-family: Manrope, "Segoe UI", system-ui, sans-serif; }
   .lb.is-open { display: flex; }
