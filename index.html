@@ -814,6 +814,10 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
   .fab { position: fixed; right: 16px; bottom: 16px; z-index: 900; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; font-family: Manrope, "Segoe UI", system-ui, sans-serif; }
   .fab__list { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
   .fab__list { pointer-events: none; }
+  /* белая рамка змейкой вокруг значков, как линия на логотипе */
+  .fab__frame { position: absolute; right: 51px; bottom: 57px; width: 130px; height: 168px; pointer-events: none; opacity: 0; transition: opacity .2s ease; }
+  .fab.is-open .fab__frame { opacity: 1; transition: opacity .35s ease .15s; }
+  @media (prefers-reduced-motion: reduce) { .fab__frame { transition: none !important; } }
   .fab.is-open .fab__list { pointer-events: auto; }
   .fab__item { opacity: 0; transform: translateY(14px) scale(.96); visibility: hidden; transition: opacity .18s ease, transform .18s ease, visibility 0s linear .18s; }
   .fab.is-open .fab__item { opacity: 1; transform: none; visibility: visible; transition: opacity .28s ease, transform .32s cubic-bezier(.2,.8,.2,1.15), visibility 0s; }
@@ -824,7 +828,25 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
   .fab__item:nth-last-child(2) { transition-delay: .04s; }
   .fab__item { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f2efe9; }
   .fab__item span { background: #131a16; border: 1px solid rgb(242 239 233 / .14); border-radius: 4px; padding: .35rem .6rem; font-size: .85rem; white-space: nowrap; }
-  .fab__ico { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 4px; background: #131a16; border: 1px solid rgb(242 239 233 / .14); box-shadow: 0 8px 24px rgb(0 0 0 / .35); }
+  /* подписи как ящики логотипа: красный, бордовый, красный */
+  .fab__item span { color: #fff; border-color: transparent; font-weight: 600; width: 120px; height: 46px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; padding: 0 .5rem; }
+  .fab__item:nth-child(1) span, .fab__item:nth-child(3) span { background: #e91e24; }
+  .fab__item:nth-child(2) span { background: #9b0a10; }
+  /* ящик выдвигается при наведении на название или значок */
+  .fab__item span { transition: transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease, filter .2s ease; }
+  .fab__item:hover span, .fab__item:focus-visible span { transform: translate(-12px, 12px) scale(1.04); box-shadow: 2px 14px 20px rgb(0 0 0 / .55); filter: brightness(1.08); }
+  /* сам ящик за фасадом: внутри темно-желтое дерево, справа темно-зеленая боковина */
+  .fab__item { position: relative; z-index: 1; }
+  .fab__item:hover, .fab__item:focus-visible { z-index: 3; }
+  .fab__item span { position: relative; z-index: 1; }
+  .fab__item::before, .fab__item::after { content: ""; position: absolute; top: 0; opacity: 0; transition: opacity .2s ease; pointer-events: none; }
+  /* верх ящика (видно внутрь): трапеция от корпуса к выдвинутому фасаду */
+  .fab__item::before { left: -15px; width: 135px; height: 12px; clip-path: polygon(15px 0, 135px 0, 125.4px 11.5px, .6px 11.5px); background: linear-gradient(to bottom, #2e210b 0%, #6e5019 45%, #a07a32 100%); }
+  /* правая боковина ящика */
+  .fab__item::after { left: 110px; width: 10px; height: 59px; clip-path: polygon(10px 0, 10px 46px, .4px 59px, .4px 11px); background: linear-gradient(to right, #24402f, #102519); }
+  .fab__item:hover::before, .fab__item:hover::after, .fab__item:focus-visible::before, .fab__item:focus-visible::after { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { .fab__item span { transition: none !important; } }
+  .fab__ico { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 4px; background: #131a16; border: 0; box-shadow: 0 8px 24px rgb(0 0 0 / .35); }
   .fab__ico svg { width: 28px; height: 28px; display: block; }
   .fab__toggle { width: 52px; height: 52px; border: 0; border-radius: 4px; background: #d99a3e; color: #14110b; cursor: pointer; display: grid; place-items: center; box-shadow: 0 10px 28px rgb(0 0 0 / .4); }
   .fab__toggle { position: relative; transition: transform .2s ease; }
@@ -858,6 +880,7 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
   </div>
 </div>
 <div class="fab">
+  <svg class="fab__frame" viewBox="0 0 130 168" aria-hidden="true"><path d="M114 1H1V56H129V112H1V167H129" fill="none" stroke="#f2efe9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   <div class="fab__list" id="fab-list">
     <a class="fab__item" href="https://t.me/+79080092009" target="_blank" rel="noopener"><span>Telegram</span><i class="fab__ico"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#26A5E4"/><path fill="#fff" d="M16.906 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.910.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></i></a>
     <a class="fab__item" href="#" data-max-fab="+79965580092"><span>MAX</span><i class="fab__ico"><svg viewBox="0 0 100 100" width="34" height="34" aria-hidden="true"><defs><linearGradient id="maxgf" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#00EAFF"/><stop offset=".35" stop-color="#1591FF"/><stop offset=".65" stop-color="#3C22FE"/><stop offset="1" stop-color="#8419FF"/></linearGradient></defs><path fill="url(#maxgf)" fill-rule="evenodd" d="M50.7571 0.261719C78.2929 0.261719 99.8857 22.5974 99.8857 50.1474C99.8857 77.6974 77.6071 99.4903 51.0214 99.4903C41.5857 99.4903 37.0143 98.1617 29.65 92.9474C29.1429 92.5903 28.45 92.6831 28.0214 93.1403C22.3571 99.1831 7.85 103.426 7.18571 95.176C7.18571 80.7903 0 71.4474 0 49.876C0 21.5546 23.2214 0.261719 50.7571 0.261719ZM51.5286 24.8117C38.4643 24.126 28.2643 33.1974 26.0143 47.3831C24.15 59.1332 27.45 73.4546 30.2786 74.176C31.4786 74.4832 34.3571 72.276 36.4571 70.2974C36.85 69.926 37.45 69.8617 37.9071 70.1474C41.1786 72.1474 44.8786 73.6474 48.9571 73.8617C62.3714 74.5617 74.2571 64.0617 74.9643 50.6474C75.6643 37.2331 64.9429 25.5046 51.5286 24.8046V24.8117Z"/></svg></i></a>
