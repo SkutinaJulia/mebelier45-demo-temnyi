@@ -665,6 +665,7 @@
           <footer class="foot">
             <span>Мебельер45 · Курган · демо-макет · собрала JuliaDirect, реквизиты ставятся при запуске</span>
             <span>Кухни, шкафы, гардеробные по вашим размерам</span>
+            <a href="politika.html">Политика конфиденциальности</a>
           </footer>
         </div>
       </div>
@@ -750,9 +751,13 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
   .work .work__img { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
   .works__grid:not(.is-open) .work--more { display: none !important; }
   .works__more { display: flex; justify-content: center; margin-top: var(--v-6); }
-  .v-page .works__btn { font: inherit; font-weight: 600; font-size: 1rem; color: #f2efe9; background: transparent; border: 1px solid rgb(242 239 233 / .45) !important; border-radius: 999px; padding: .85em 1.8em; cursor: pointer; transition: border-color .2s, background .2s; }
+  .v-page .works__btn { font: inherit; font-weight: 600; font-size: 1rem; color: #f2efe9; background: transparent; border: 1px solid rgb(242 239 233 / .45) !important; border-radius: 4px; padding: .85em 1.8em; cursor: pointer; transition: border-color .2s, background .2s; }
   .v-page .works__btn:hover { border-color: #d99a3e !important; background: rgb(217 154 62 / .1); }
   .v-page .works__btn:focus-visible { outline: 2px solid #d99a3e; outline-offset: 3px; }
+  /* Кнопки прямоугольные, как ящики на логотипе (01.10.2026) */
+  .v-page .v-btn { border-radius: 4px; }
+  .lb .lb__btn { border-radius: 4px; }
+  .v-page .sw__btn i { border-radius: 4px; }
   .work:hover .work__img { transform: scale(1.035); }
   @media (min-width: 1001px) {
     .v-page .works__grid { display: block; columns: 3; column-gap: var(--v-5); }
@@ -776,6 +781,107 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
     b.textContent = open ? b.getAttribute('data-less') : b.getAttribute('data-more');
     b.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (!open) document.getElementById('raboty').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script><style>
+  .lf { position: fixed; inset: 0; z-index: 1001; display: none; align-items: center; justify-content: center; padding: 1rem; background: rgb(6 8 7 / .82); font-family: Manrope, "Segoe UI", system-ui, sans-serif; }
+  .lf.is-open { display: flex; }
+  .lf__box { position: relative; width: 100%; max-width: 30rem; max-height: calc(100vh - 2rem); overflow: auto; background: #131a16; color: #f2efe9; border: 1px solid rgb(242 239 233 / .12); border-radius: 6px; padding: 2rem 1.75rem 1.5rem; box-shadow: 0 30px 80px rgb(0 0 0 / .6); }
+  .lf__title { font-family: Piazzolla, Georgia, serif; font-weight: 600; font-size: 1.6rem; line-height: 1.15; margin: 0 2rem .5rem 0; }
+  .lf__lede { color: #a09b93; font-size: .95rem; line-height: 1.5; margin: 0 0 1.25rem; }
+  .lf__form { display: grid; gap: .85rem; }
+  .lf__form label { display: grid; gap: .35rem; font-size: .85rem; color: #cfc9bf; }
+  .lf__form label span { color: #7f7a73; }
+  .lf__form input:not([type=checkbox]), .lf__form select, .lf__form textarea { font: inherit; font-size: 1rem; color: #f2efe9; background: #0c110e; border: 1px solid rgb(242 239 233 / .18); border-radius: 4px; padding: .7rem .8rem; width: 100%; box-sizing: border-box; }
+  .lf__form textarea { resize: vertical; min-height: 4.5rem; }
+  .lf__form input:focus, .lf__form select:focus, .lf__form textarea:focus { outline: 2px solid #d99a3e; outline-offset: 1px; border-color: transparent; }
+  .lf__form .is-bad { border-color: #ff5a4f !important; }
+  .lf__agree { grid-template-columns: auto 1fr; align-items: start; gap: .6rem !important; line-height: 1.45; }
+  .lf__agree input { width: 1.15rem; height: 1.15rem; margin-top: .1rem; accent-color: #d99a3e; }
+  .lf__agree a { color: #d99a3e; }
+  .lf__submit { width: 100%; display: flex; justify-content: center; margin-top: .25rem; border: 0; border-radius: 4px; padding: .95em 1.6em; cursor: pointer; font: inherit; font-weight: 600; background: #d99a3e !important; color: #14110b !important; }
+  .lf__submit:hover { filter: brightness(1.07); }
+  .lf__err { color: #ff8a80; font-size: .85rem; min-height: 1.2em; margin: 0; }
+  .lf__alt { margin: 1.1rem 0 0; font-size: .85rem; color: #a09b93; line-height: 1.5; }
+  .lf__alt a { color: #f2efe9; }
+  .lf__close { position: absolute; top: .6rem; right: .6rem; width: 40px; height: 40px; border: 0; border-radius: 4px; background: rgb(255 255 255 / .08); color: #fff; font-size: 24px; line-height: 40px; cursor: pointer; }
+  .lf__done { display: none; text-align: left; }
+  .lf.is-sent .lf__form, .lf.is-sent .lf__lede { display: none; }
+  .lf.is-sent .lf__done { display: block; }
+  .lf__done p { color: #cfc9bf; line-height: 1.55; margin: 0 0 .8rem; }
+  .lf__done b { color: #f2efe9; }
+
+  .fab { position: fixed; right: 16px; bottom: 16px; z-index: 900; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; font-family: Manrope, "Segoe UI", system-ui, sans-serif; }
+  .fab__list { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+  .fab:not(.is-open) .fab__list { display: none; }
+  .fab__item { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f2efe9; }
+  .fab__item span { background: #131a16; border: 1px solid rgb(242 239 233 / .14); border-radius: 4px; padding: .35rem .6rem; font-size: .85rem; white-space: nowrap; }
+  .fab__ico { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 4px; background: #131a16; border: 1px solid rgb(242 239 233 / .14); box-shadow: 0 8px 24px rgb(0 0 0 / .35); }
+  .fab__ico svg { width: 28px; height: 28px; display: block; }
+  .fab__toggle { width: 52px; height: 52px; border: 0; border-radius: 4px; background: #d99a3e; color: #14110b; cursor: pointer; display: grid; place-items: center; box-shadow: 0 10px 28px rgb(0 0 0 / .4); }
+  .fab__toggle svg { width: 26px; height: 26px; }
+  .fab__toggle .fab__x { display: none; font-size: 28px; line-height: 1; }
+  .fab.is-open .fab__toggle .fab__chat { display: none; }
+  .fab.is-open .fab__toggle .fab__x { display: block; }
+  .fab__toast { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 1002; background: #131a16; color: #f2efe9; border: 1px solid rgb(242 239 233 / .2); border-radius: 4px; padding: .6rem .9rem; font-size: .9rem; display: none; max-width: calc(100vw - 2rem); text-align: center; }
+  .fab__toast.is-on { display: block; }
+  @media (min-width: 761px) { .fab { right: 24px; bottom: 24px; } }
+  .foot a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+</style>
+<div class="lf" role="dialog" aria-modal="true" aria-labelledby="lf-title" hidden>
+  <div class="lf__box">
+    <button class="lf__close" type="button" aria-label="Закрыть">&#215;</button>
+    <h2 class="lf__title" id="lf-title">Рассчитать кухню или шкаф</h2>
+    <p class="lf__lede">Оставьте телефон. Перезвоним в течение рабочего дня, уточним размеры и пришлем предварительный расчет.</p>
+    <form class="lf__form" novalidate>
+      <label>Имя<input name="name" autocomplete="name" maxlength="60" required></label>
+      <label>Телефон<input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="+7 900 000-00-00" required></label>
+      <label>Что нужно<select name="what"><option>Кухня</option><option>Шкаф или гардеробная</option><option>Прихожая</option><option>Другое</option></select></label>
+      <label>Размеры или комментарий <span>(необязательно)</span><textarea name="msg" rows="3" maxlength="1000"></textarea></label>
+      <label class="lf__agree"><input type="checkbox" name="agree" required><span style="color:#cfc9bf">Даю согласие на обработку персональных данных и принимаю <a href="politika.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
+      <p class="lf__err" role="alert"></p>
+      <button class="v-btn lf__submit" type="submit">Отправить заявку</button>
+    </form>
+    <p class="lf__alt">Удобнее написать или позвонить? <a href="https://t.me/+79080092009" target="_blank" rel="noopener">Telegram</a>, MAX +7 996 558-00-92 или <a href="tel:+79080092009">+7 (908) 009-20-09</a></p>
+  </div>
+</div>
+<div class="fab">
+  <div class="fab__list" id="fab-list">
+    <a class="fab__item" href="https://t.me/+79080092009" target="_blank" rel="noopener"><span>Telegram</span><i class="fab__ico"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#26A5E4"/><path fill="#fff" d="M16.906 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.910.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg></i></a>
+    <a class="fab__item" href="#" data-max-fab="+79965580092"><span>MAX</span><i class="fab__ico"><svg viewBox="0 0 100 100" width="34" height="34" aria-hidden="true"><defs><linearGradient id="maxgf" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#00EAFF"/><stop offset=".35" stop-color="#1591FF"/><stop offset=".65" stop-color="#3C22FE"/><stop offset="1" stop-color="#8419FF"/></linearGradient></defs><path fill="url(#maxgf)" fill-rule="evenodd" d="M50.7571 0.261719C78.2929 0.261719 99.8857 22.5974 99.8857 50.1474C99.8857 77.6974 77.6071 99.4903 51.0214 99.4903C41.5857 99.4903 37.0143 98.1617 29.65 92.9474C29.1429 92.5903 28.45 92.6831 28.0214 93.1403C22.3571 99.1831 7.85 103.426 7.18571 95.176C7.18571 80.7903 0 71.4474 0 49.876C0 21.5546 23.2214 0.261719 50.7571 0.261719ZM51.5286 24.8117C38.4643 24.126 28.2643 33.1974 26.0143 47.3831C24.15 59.1332 27.45 73.4546 30.2786 74.176C31.4786 74.4832 34.3571 72.276 36.4571 70.2974C36.85 69.926 37.45 69.8617 37.9071 70.1474C41.1786 72.1474 44.8786 73.6474 48.9571 73.8617C62.3714 74.5617 74.2571 64.0617 74.9643 50.6474C75.6643 37.2331 64.9429 25.5046 51.5286 24.8046V24.8117Z"/></svg></i></a>
+    <a class="fab__item" href="tel:+79080092009"><span>Позвонить</span><i class="fab__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#d99a3e" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></i></a>
+  </div>
+  <button class="fab__toggle" type="button" aria-expanded="false" aria-controls="fab-list" aria-label="Написать или позвонить"><svg class="fab__chat" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 6.5a1.5 1.5 0 1 0 0-.01zm5 0a1.5 1.5 0 1 0 0-.01zm5 0a1.5 1.5 0 1 0 0-.01z"/></svg><span class="fab__x" aria-hidden="true">&#215;</span></button>
+</div>
+<div class="fab__toast" role="status" aria-live="polite"></div>
+<script>
+(function () {
+  var lf = document.querySelector('.lf'), form = lf.querySelector('.lf__form'), err = lf.querySelector('.lf__err'), last = null;
+  function open(e) { if (e) e.preventDefault(); last = document.activeElement; lf.classList.remove('is-sent'); lf.hidden = false; lf.classList.add('is-open'); document.documentElement.style.overflow = 'hidden'; setTimeout(function () { form.elements.name.focus(); }, 30); }
+  function close() { lf.classList.remove('is-open'); lf.hidden = true; document.documentElement.style.overflow = ''; if (last) last.focus(); }
+  document.querySelectorAll('a.v-btn').forEach(function (a) { if (/Рассчитать/.test(a.textContent)) a.addEventListener('click', open); });
+  lf.querySelector('.lf__close').addEventListener('click', close);
+  lf.addEventListener('click', function (e) { if (e.target === lf) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !lf.hidden) close(); });
+  form.addEventListener('submit', function (e) {
+    e.preventDefault(); var f = form.elements, bad = [];
+    [f.name, f.phone].forEach(function (x) { x.classList.remove('is-bad'); });
+    if (!f.name.value.trim()) bad.push(f.name);
+    if (f.phone.value.replace(/\D/g, '').length < 10) bad.push(f.phone);
+    bad.forEach(function (x) { x.classList.add('is-bad'); });
+    if (bad.length) { err.textContent = 'Укажите имя и телефон.'; bad[0].focus(); return; }
+    if (!f.agree.checked) { err.textContent = 'Отметьте согласие на обработку данных.'; f.agree.focus(); return; }
+    err.textContent = ''; form.reset(); location.href = 'spasibo.html'; // при запуске: сначала отправить заявку, потом перейти
+  });
+
+  var fab = document.querySelector('.fab'), tg = fab.querySelector('.fab__toggle'), toast = document.querySelector('.fab__toast'), tt;
+  tg.addEventListener('click', function () { var o = fab.classList.toggle('is-open'); tg.setAttribute('aria-expanded', o ? 'true' : 'false'); });
+  document.addEventListener('click', function (e) { if (!fab.contains(e.target)) { fab.classList.remove('is-open'); tg.setAttribute('aria-expanded', 'false'); } });
+  fab.querySelector('[data-max-fab]').addEventListener('click', function (e) {
+    e.preventDefault(); var n = this.getAttribute('data-max-fab'), ok = false;
+    try { var ta = document.createElement('textarea'); ta.value = n; ta.style.cssText = 'position:fixed;opacity:0'; document.body.appendChild(ta); ta.select(); ok = document.execCommand('copy'); ta.remove(); } catch (x) {}
+    toast.textContent = ok ? 'Номер +7 996 558-00-92 скопирован, найдите его в MAX' : 'Найдите в MAX номер +7 996 558-00-92';
+    toast.classList.add('is-on'); clearTimeout(tt); tt = setTimeout(function () { toast.classList.remove('is-on'); }, 3500);
   });
 })();
 </script><style>
