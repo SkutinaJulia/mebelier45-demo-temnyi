@@ -325,8 +325,91 @@
   .v-page .work.is-photo::after { height: 75%; background: linear-gradient(to top, rgb(0 0 0 / .88) 0%, rgb(0 0 0 / .7) 40%, rgb(0 0 0 / 0) 100%); }
   .v-page .work figcaption { color: #e9e4da; text-shadow: 0 1px 3px rgb(0 0 0 / .8); }
   .v-page .work figcaption b { color: #ffffff; }
-  .edit-mark, .edit-mark b { color: #ff5a4f !important; }
-</style>
+  .facts { display: grid; gap: clamp(1.75rem, 4vw, 3rem); }
+  .facts__adv, .facts__num { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem 1.5rem; }
+  .facts__adv li { border-top: 2px solid var(--v-accent); padding-top: .85rem; }
+  .facts__adv b { display: block; color: var(--v-ink); font-weight: 600; margin-bottom: .3rem; }
+  .facts__adv span { color: var(--v-ink-soft); font-size: .95rem; line-height: 1.45; }
+  .facts__num li { display: grid; gap: .35rem; align-content: start; }
+  .facts__num .n { font-family: var(--v-font-display); font-size: clamp(2.2rem, 5.5vw, 3.6rem); line-height: 1; color: var(--v-accent); }
+  .facts__num small { color: var(--v-ink-soft); font-size: .95rem; line-height: 1.4; }
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: start; }
+  .about p + p { margin-top: 1em; }
+  .cta-strip { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: center; justify-content: space-between; border: 1px solid var(--v-hair); border-radius: 4px; padding: clamp(1.25rem, 3vw, 2rem); }
+  .cta-strip p { margin: 0; max-width: 46ch; color: var(--v-ink); }
+  @media (max-width: 760px) { .facts__adv, .facts__num { grid-template-columns: 1fr 1fr; } .about { grid-template-columns: 1fr; } }  .conf__spec { line-height: 1.7 !important; }
+  .price__pay { margin: 1.5rem 0 0 !important; color: var(--v-ink-soft); font-size: .95rem; line-height: 1.55; max-width: 60ch; } .price__pay b { color: var(--v-ink); font-weight: 600; }
+  .price__facts { list-style: none; margin: 1rem 0 0 !important; padding: 0; display: grid; gap: .55rem; max-width: 46ch; color: var(--v-ink-soft); } .price__facts li { position: relative; padding-left: 1.1rem; line-height: 1.5; } .price__facts li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; background: var(--v-accent); } .price__facts b { color: var(--v-ink); font-weight: 600; }
+  .kons { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.5rem, 4vw, 4rem); align-items: start; } .kons__list { list-style: none; margin: 1.25rem 0 1.75rem !important; padding: 0; display: grid; gap: .7rem; color: var(--v-ink-soft); max-width: 46ch; } .kons__list li { position: relative; padding-left: 1.1rem; line-height: 1.5; } .kons__list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; background: var(--v-accent); } .kons__map iframe { display: block; width: 100%; aspect-ratio: 4 / 3; border: 0; border-radius: 4px; background: var(--v-surface); } .kons__map p { margin: .6rem 0 0 !important; color: var(--v-ink-soft); font-size: .95rem; } @media (max-width: 760px) { .kons { grid-template-columns: 1fr; } }
+  html { scroll-behavior: smooth; }
+  main section[id] { scroll-margin-top: 76px; }
+  .bar__nav { display: flex; gap: clamp(.9rem, 1.6vw, 1.6rem); margin: 0 auto 0 clamp(1.5rem, 3vw, 3rem); }
+  .bar__nav a { color: var(--v-ink-soft); text-decoration: none; font-size: var(--v-t-sm); font-weight: 500; white-space: nowrap; padding: .35rem 0; border-bottom: 2px solid transparent; transition: color .2s, border-color .2s; }
+  .bar__nav a:hover, .bar__nav a.is-active { color: var(--v-ink); border-bottom-color: var(--v-accent); }
+  .bar__burger { display: none; width: 44px; height: 44px; padding: 11px 10px; border: 1px solid var(--v-hair); border-radius: 4px; background: transparent; cursor: pointer; flex-direction: column; justify-content: space-between; }
+  .bar__burger i { display: block; height: 2px; background: var(--v-ink); transition: transform .2s, opacity .2s; }
+  .bar__burger[aria-expanded="true"] i:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .bar__burger[aria-expanded="true"] i:nth-child(2) { opacity: 0; }
+  .bar__burger[aria-expanded="true"] i:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  @media (max-width: 1180px) {
+    .bar__burger { display: flex; }
+    .bar__nav { display: none; position: absolute; top: 100%; left: 0; right: 0; margin: 0; flex-direction: column; gap: 0; padding: .5rem var(--v-gutter) 1rem; background: rgb(16 23 19 / .97); border-bottom: 1px solid var(--v-hair); }
+    .bar__nav.is-open { display: flex; }
+    .bar__nav a { font-size: 1.05rem; padding: .85rem 0; border-bottom: 1px solid var(--v-hair); }
+    .bar__nav a:last-child { border-bottom: 0; }
+    .bar__nav a.is-active { border-bottom-color: var(--v-hair); color: var(--v-accent); }
+  }  .ws { position: relative; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+  .ws__view { overflow: hidden; }
+  .ws__track { list-style: none; margin: 0 !important; padding: 0; display: flex; transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+  .v-page .ws__slide { flex: 0 0 100%; min-width: 0; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 4rem); align-items: center; padding: 0 clamp(0px, 4vw, 56px); box-sizing: border-box; }
+  .v-page .ws__slide.work { background: transparent !important; box-shadow: none !important; border-radius: 0; overflow: visible; }
+  .v-page .ws__photo { position: relative; margin: 0; aspect-ratio: 1 / 1; border-radius: 16px; overflow: hidden; cursor: zoom-in; background: var(--v-surface); }
+  .ws__title { font-family: var(--v-font-display); font-size: clamp(1.5rem, 2.6vw, 2.25rem); line-height: 1.15; color: var(--v-ink); margin: 0 0 1rem; }
+  .ws__where { display: flex; align-items: center; gap: .5rem; color: var(--v-ink); font-weight: 600; margin: 0 0 1.5rem !important; }
+  .ws__label { display: block; font-family: var(--v-font-display); font-size: 1.15rem; color: var(--v-ink); margin-bottom: .5rem; }
+  .ws__desc { color: var(--v-ink-soft); line-height: 1.65; margin: 0 0 1.75rem !important; max-width: 52ch; }
+  .v-page .ws__nav { position: absolute; top: calc(50% - 40px); width: 52px; height: 52px; padding: 0 0 4px; border-radius: 50% !important; border: 0 !important; background: var(--v-accent) !important; color: var(--v-accent-ink) !important; font-size: 34px !important; font-weight: 600; line-height: 1; cursor: pointer; z-index: 2; box-shadow: 0 6px 18px rgb(0 0 0 / .35); }
+  .ws__prev { left: 0; } .ws__next { right: 0; }
+  .v-page .ws__nav:disabled { opacity: .3; cursor: default; }
+  .ws__bar { display: flex; align-items: center; gap: 1.25rem; margin-top: 1.5rem; padding: 0 clamp(0px, 4vw, 56px); }
+  .ws__count { color: var(--v-ink-soft); font-variant-numeric: tabular-nums; white-space: nowrap; min-width: 4.5ch; }
+  .ws__thumbs { display: flex; gap: .6rem; overflow-x: auto; scrollbar-width: none; padding: 4px; min-width: 0; }
+  .ws__thumbs::-webkit-scrollbar { display: none; }
+  .ws__thumb { flex: 0 0 auto; width: 72px; height: 72px; padding: 0; border: 2px solid transparent; border-radius: 10px; overflow: hidden; cursor: pointer; background: none; opacity: .55; transition: opacity .2s, border-color .2s; }
+  .ws__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ws__thumb.is-on, .ws__thumb:hover { opacity: 1; border-color: var(--v-accent); }
+  @media (max-width: 760px) {
+    .v-page .ws__slide { grid-template-columns: 1fr; gap: 1.25rem; align-items: start; padding: 0; }
+    .v-page .ws__photo { aspect-ratio: 4 / 3; }
+    .v-page .ws__nav { top: calc((100vw - 2 * var(--v-gutter, 20px)) * .375 - 22px); width: 44px; height: 44px; font-size: 28px !important; }
+    .ws__prev { left: 8px; } .ws__next { right: 8px; }
+    .ws__bar { padding: 0; } .ws__thumb { width: 56px; height: 56px; }
+  }  @media (min-width: 761px) { .about > div:first-child { display: contents; } .about > div:first-child h2 { grid-column: 1 / -1; max-width: 18ch; } .about { align-items: center; row-gap: 2.5rem; } .about__photo { margin: 0 !important; width: min(100%, 420px) !important; justify-self: start; } }
+  .about__photo { width: min(100%, 360px); margin: 1.75rem 0 0 !important; } .about__photo img { display: block; width: 100%; height: auto; border-radius: 4px; } .about__photo figcaption { margin-top: .5rem; color: var(--v-ink-soft); font-size: .9rem; }
+  .about__video { position: relative; display: block; width: min(100%, 320px); margin-top: 1.75rem; padding: 0; border: 0; border-radius: 4px; overflow: hidden; cursor: pointer; background: var(--v-surface); }
+  .about__video img { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .4s; }
+  .about__video:hover img { transform: scale(1.03); }
+  .about__video-cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 1.5rem .9rem .8rem; color: #fff; font-size: .9rem; font-weight: 600; text-align: left; background: linear-gradient(to top, rgb(0 0 0 / .7), transparent); }
+  .play { position: absolute; left: 50%; top: 50%; width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; background: #e91e24; box-shadow: 0 6px 20px rgb(0 0 0 / .35); }
+  .play::after { content: ""; position: absolute; left: 22px; top: 18px; border-style: solid; border-width: 10px 0 10px 16px; border-color: transparent transparent transparent #fff; }
+  .vw, .vm { font-family: var(--v-font-text, "Manrope", system-ui, sans-serif); }
+  .vw { position: fixed; left: 18px; bottom: 18px; z-index: 40; opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .4s, transform .4s; }
+  .vw.is-on { opacity: 1; transform: none; pointer-events: auto; }
+  .vw__hint { position: absolute; left: 70px; top: -40px; color: #f2a6c4; font-weight: 700; font-size: .9rem; white-space: nowrap; }
+  .vw__hint svg { position: absolute; left: -42px; top: 6px; }
+  .vw__card { position: relative; display: block; width: 120px; height: 170px; padding: 0; border: 3px solid #fff; border-radius: 16px; overflow: hidden; cursor: pointer; background: #000; box-shadow: 0 10px 30px rgb(0 0 0 / .45); transition: transform .25s; }
+  .vw__card:hover { transform: scale(1.05); }
+  .vw__card img { width: 100%; height: 100%; object-fit: cover; }
+  .vw__card .play { width: 40px; height: 40px; margin: -20px 0 0 -20px; }
+  .vw__card .play::after { left: 15px; top: 12px; border-width: 8px 0 8px 13px; }
+  .vw__x { position: absolute; right: -10px; top: -10px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: #fff; color: #111; font-size: 18px; line-height: 26px; padding: 0; cursor: pointer; box-shadow: 0 2px 8px rgb(0 0 0 / .3); }
+  @media (max-width: 760px) { .vw { left: 12px; bottom: 14px; } .vw__card { width: 84px; height: 120px; border-radius: 12px; } .vw__hint { left: 52px; top: -34px; font-size: .8rem; } }
+  .vm { position: fixed; inset: 0; z-index: 60; display: none; align-items: center; justify-content: center; background: rgb(0 0 0 / .85); padding: 16px; }
+  .vm.is-open { display: flex; }
+  .vm__box { position: relative; width: min(92vw, calc(86vh * 9 / 16)); aspect-ratio: 9 / 16; background: #000; border-radius: 8px; overflow: hidden; }
+  .vm__box iframe { width: 100%; height: 100%; border: 0; display: block; }
+  .vm__close { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgb(255 255 255 / .15); color: #fff; font-size: 26px; cursor: pointer; }
+  .vm__vk { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: rgb(255 255 255 / .75); font-size: .85rem; }</style>
 </head>
 <body>
 <div class="v-page">
@@ -335,7 +418,9 @@
 
   <header class="bar" id="bar">
     <a class="bar__mark" href="#top"><svg class="bar__logo" viewBox="0 0 108 108" width="30" height="30" aria-hidden="true"><path d="M8 4H92M8 4V34H100V66H8V98H100M16 98v7M92 98v7" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><rect x="18" y="9" width="82" height="21" rx="3" fill="#e91e24"/><rect x="8" y="39" width="84" height="23" rx="3" fill="#9b0a10"/><rect x="12" y="71" width="88" height="23" rx="3" fill="#e91e24"/><path d="M52 19.5h16M42 50.5h16M49 82.5h16" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>Мебельер45</a>
+    <nav class="bar__nav" id="bar-nav" aria-label="Разделы сайта"><a href="#raboty">Работы</a><a href="#onas">О нас</a><a href="#ceny">Цены</a><a href="#materialy">Материалы</a><a href="#kak">Как заказать</a><a href="#otzyvy">Отзывы</a><a href="#raschet">Контакты</a></nav>
     <div class="bar__right">
+      <button class="bar__burger" type="button" aria-expanded="false" aria-controls="bar-nav" aria-label="Меню"><i></i><i></i><i></i></button>
       <a class="bar__tel tap" href="tel:+7 (908) 009-20-09">+7 (908) 009-20-09</a>
       <a class="v-btn" href="#raschet">Рассчитать</a>
     </div>
@@ -355,7 +440,7 @@
         </div>
         <div class="hero__floor" aria-hidden="true"></div>
 
-        <div class="hero__copy"><p class="demo-badge"><span class="demo-badge__dot" aria-hidden="true"></span><span>Демо для <b>Мебельер45</b> · прототип сайта от JuliaDirect</span></p>
+        <div class="hero__copy">
           <h1 class="v-display v-display--xl" data-v-cue="0 0.85 0" data-v-kinetic="lines" data-hero-cue>Кухни и шкафы на заказ в Кургане. Расчет за день.</h1>
           <div class="hero__rest" data-v-cue="0 0.85 0" data-v-rise="0" data-hero-cue>
             <p class="v-lede">Присылаете размеры или план, за день даем предварительный расчет. Дальше замер, договор со сроком изготовления, 3D-проект и точная смета.</p>
@@ -371,76 +456,89 @@
       </div>
     </section>
 
-    <!-- 2 · ПОВОРОТ: конфигуратор фасадов (фирменный ход) -->
-    <section data-v-act="pin" data-v-span="2.6" data-v-drift="#131c16" id="fasady" aria-label="Конфигуратор фасадов">
-      <div data-v-stage>
-        <div class="conf" aria-hidden="true">
-          <img class="conf__img" src="assets/kitchen-base.webp" alt="" width="1920" height="1067">
-          <img class="conf__img" src="assets/kitchen-white.webp" alt="" width="1920" height="1067" loading="lazy">
-          <img class="conf__img" src="assets/kitchen-oak.webp" alt="" width="1920" height="1067" loading="lazy">
-          <img class="conf__img" src="assets/kitchen-green.webp" alt="" width="1920" height="1067" loading="lazy">
+    <section class="v-section v-section--tight" data-v-act="flow" data-v-drift="#101713" id="cifry" aria-label="О производстве в цифрах">
+      <div class="v-wrap facts">
+        <ul class="facts__adv" data-v-in data-v-stagger="70">
+          <li><b>Собственное производство</b><span>В Кургане, ул. Омская, 72Б</span></li>
+          <li><b>Любой нестандарт</b><span>Делаем по вашим размерам и эскизам</span></li>
+          <li><b>Замер бесплатно</b><span>Замерщик привозит образцы материалов</span></li>
+          <li><b>Проект в 3D</b><span>Показываем кухню до начала работ</span></li>
+        </ul>
+        <ul class="facts__num" data-v-in data-v-stagger="70">
+          <li><span class="n">с 2016</span><small>года делаем мебель</small></li>
+          <li><span class="n">2 000+</span><small>изделий изготовили</small></li>
+          <li><span class="n">11</span><small>человек в команде</small></li>
+          <li><span class="n">12 мес</span><small>гарантия на все изделие</small></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="v-section" data-v-act="flow" data-v-drift="#0f1512" id="raboty" aria-label="Наши работы" data-if="работа 1">
+      <div class="v-wrap">
+        <div class="works__head" data-v-in data-v-stagger="60">
+          <h2 class="v-display v-display--lg">Наши работы</h2>
+          <p class="v-body">Кухни, шкафы и прихожие, которые мы изготовили и смонтировали. Фото из квартир и домов клиентов после монтажа, без ретуши. Нажмите на фото, чтобы открыть его крупно.</p>
         </div>
+        <div class="ws" aria-roledescription="карусель" aria-label="Наши работы">
+        <div class="ws__view"><ul class="ws__track">
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="1 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-1-kuhnya-shalfey.jpg" alt="Кухня «Шалфей» с колоннами под дерево" loading="lazy"><figcaption hidden><b>Кухня «Шалфей» с колоннами под дерево</b><br>Прямая кухня во всю стену. Нижние и верхние шкафы в матовом зеленом цвете, без ручек. Справа колонны под темное дерево: в них встроены холодильник, микроволновка и витрина. Фартук и столешница под камень.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Кухня «Шалфей» с колоннами под дерево</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Прямая кухня во всю стену. Нижние и верхние шкафы в матовом зеленом цвете, без ручек. Справа колонны под темное дерево: в них встроены холодильник, микроволновка и витрина. Фартук и столешница под камень.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="2 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-2-kuhnya-bezh-derevo.jpg" alt="Бежевая кухня с панелью под дуб" loading="lazy"><figcaption hidden><b>Бежевая кухня с панелью под дуб</b><br>Матовые бежевые фасады и стеновая панель под дуб, которая заходит в нишу между шкафами. Духовка встроена в колонну на удобной высоте, верхние шкафы доходят до потолка.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Бежевая кухня с панелью под дуб</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Матовые бежевые фасады и стеновая панель под дуб, которая заходит в нишу между шкафами. Духовка встроена в колонну на удобной высоте, верхние шкафы доходят до потолка.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="3 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-3-shkaf-zerkalo.jpg" alt="Шкаф до потолка с зеркалами" loading="lazy"><figcaption hidden><b>Шкаф до потолка с зеркалами</b><br>Распашной шкаф во всю стену, от пола до потолка. Два центральных фасада с зеркалами зрительно расширяют комнату, остальные матовые, с длинными черными ручками.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Шкаф до потолка с зеркалами</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Распашной шкаф во всю стену, от пола до потолка. Два центральных фасада с зеркалами зрительно расширяют комнату, остальные матовые, с длинными черными ручками.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="4 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-4-prihozhaya.jpg" alt="Прихожая с нишей и сиденьем" loading="lazy"><figcaption hidden><b>Прихожая с нишей и сиденьем</b><br>Высокий шкаф под светлое дерево на всю высоту стены и открытая ниша с крючками, подсветкой и мягким сиденьем. Над нишей антресоль для сезонных вещей.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Прихожая с нишей и сиденьем</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Высокий шкаф под светлое дерево на всю высоту стены и открытая ниша с крючками, подсветкой и мягким сиденьем. Над нишей антресоль для сезонных вещей.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="5 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-5-rabochee-mesto.jpg" alt="Рабочее место с перегородкой из реек" loading="lazy"><figcaption hidden><b>Рабочее место с перегородкой из реек</b><br>Стол углом, открытые полки и шкаф с ящиками до потолка. Перегородка из деревянных реек отделяет рабочее место от комнаты и пропускает свет.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Рабочее место с перегородкой из реек</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Стол углом, открытые полки и шкаф с ящиками до потолка. Перегородка из деревянных реек отделяет рабочее место от комнаты и пропускает свет.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="6 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-6-kuhnya-grafit.jpg" alt="Графитовая кухня до потолка" loading="lazy"><figcaption hidden><b>Графитовая кухня до потолка</b><br>Угловая кухня в графитовом цвете, верхние шкафы до потолка. Колонна под духовку и микроволновку, ниша под большой двухдверный холодильник, темная столешница и фартук под камень.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Графитовая кухня до потолка</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Угловая кухня в графитовом цвете, верхние шкафы до потолка. Колонна под духовку и микроволновку, ниша под большой двухдверный холодильник, темная столешница и фартук под камень.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="7 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-7-kuhnya-uglovaya-belaya.jpg" alt="Угловая кухня: белый и дерево" loading="lazy"><figcaption hidden><b>Угловая кухня: белый и дерево</b><br>Белые фасады, высокий пенал и фартук под дерево. Встроенная духовка, газовая варочная панель и наклонная вытяжка в нише между верхними шкафами.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Угловая кухня: белый и дерево</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Белые фасады, высокий пенал и фартук под дерево. Встроенная духовка, газовая варочная панель и наклонная вытяжка в нише между верхними шкафами.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="8 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-8-kuhnya-p-obraznaya.jpg" alt="П-образная кухня под светлое дерево" loading="lazy"><figcaption hidden><b>П-образная кухня под светлое дерево</b><br>Кухня по трем стенам, один край работает как барная стойка. Подсветка рабочей зоны под верхними шкафами, встроенные духовка и микроволновка, ниша под холодильник.</figcaption></figure><div class="ws__info"><h3 class="ws__title">П-образная кухня под светлое дерево</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Кухня по трем стенам, один край работает как барная стойка. Подсветка рабочей зоны под верхними шкафами, встроенные духовка и микроволновка, ниша под холодильник.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="9 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-9-kuhnya-beton.jpg" alt="Кухня под светлый бетон" loading="lazy"><figcaption hidden><b>Кухня под светлый бетон</b><br>Фасады под светлый бетон до потолка, пеналы с длинными вертикальными ручками и темная столешница. Мойка стоит у окна.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Кухня под светлый бетон</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган, частный дом</p><span class="ws__label">Описание</span><p class="ws__desc">Фасады под светлый бетон до потолка, пеналы с длинными вертикальными ручками и темная столешница. Мойка стоит у окна.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="10 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-10-kuhnya-v-dome.jpg" alt="Бежевая кухня в частном доме" loading="lazy"><figcaption hidden><b>Бежевая кухня в частном доме</b><br>Прямая кухня в мягком бежевом цвете с ручками-скобами. Фартук и столешница под белый мрамор, верхние шкафы по обе стороны от окна.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Бежевая кухня в частном доме</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган, частный дом</p><span class="ws__label">Описание</span><p class="ws__desc">Прямая кухня в мягком бежевом цвете с ручками-скобами. Фартук и столешница под белый мрамор, верхние шкафы по обе стороны от окна.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="11 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-11-shkaf-temnoe-derevo.jpg" alt="Шкаф под темное дерево" loading="lazy"><figcaption hidden><b>Шкаф под темное дерево</b><br>Распашной шкаф до потолка под темное дерево с длинными черными ручками. Сбоку открытые полки для книг и мелочей.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Шкаф под темное дерево</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Распашной шкаф до потолка под темное дерево с длинными черными ручками. Сбоку открытые полки для книг и мелочей.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+          <li class="work ws__slide" aria-roledescription="слайд" aria-label="12 из 12"><figure class="ws__photo"><img class="work__img" src="assets/work-12-shkaf-vokrug-dveri.jpg" alt="Шкаф вокруг дверного проема" loading="lazy"><figcaption hidden><b>Шкаф вокруг дверного проема</b><br>Шкафы до потолка с двух сторон и над дверью: вся стена работает на хранение, а дверь как будто встроена в мебель. Справа открытые полки и ящики под дерево.</figcaption></figure><div class="ws__info"><h3 class="ws__title">Шкаф вокруг дверного проема</h3><p class="ws__where"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#e91e24" d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>Курган</p><span class="ws__label">Описание</span><p class="ws__desc">Шкафы до потолка с двух сторон и над дверью: вся стена работает на хранение, а дверь как будто встроена в мебель. Справа открытые полки и ящики под дерево.</p><a class="v-btn" href="#raschet">Рассчитать такую же</a></div></li>
+        </ul></div>
+        <button class="ws__nav ws__prev" type="button" aria-label="Предыдущая работа">&#8249;</button><button class="ws__nav ws__next" type="button" aria-label="Следующая работа">&#8250;</button>
+        <div class="ws__bar"><span class="ws__count">1 / 12</span><div class="ws__thumbs"><button class="ws__thumb" type="button" aria-label="Работа 1"><img src="assets/work-1-kuhnya-shalfey.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 2"><img src="assets/work-2-kuhnya-bezh-derevo.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 3"><img src="assets/work-3-shkaf-zerkalo.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 4"><img src="assets/work-4-prihozhaya.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 5"><img src="assets/work-5-rabochee-mesto.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 6"><img src="assets/work-6-kuhnya-grafit.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 7"><img src="assets/work-7-kuhnya-uglovaya-belaya.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 8"><img src="assets/work-8-kuhnya-p-obraznaya.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 9"><img src="assets/work-9-kuhnya-beton.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 10"><img src="assets/work-10-kuhnya-v-dome.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 11"><img src="assets/work-11-shkaf-temnoe-derevo.jpg" alt="" loading="lazy"></button><button class="ws__thumb" type="button" aria-label="Работа 12"><img src="assets/work-12-shkaf-vokrug-dveri.jpg" alt="" loading="lazy"></button></div></div>
+      </div>
+      </div>
+    </section>
 
-        <div class="conf__top">
-          <div data-v-cue="0 1 0 0" data-v-rise="0">
-            <span class="v-label">Конфигуратор фасадов</span>
-            <h2 class="v-display v-display--md">Одна кухня. Четыре фасада.</h2>
-          </div>
-          <div class="conf__rep">
-            <div data-v-cue="0 0.19 0 0.07">
-              <h3>Матовый графит</h3>
-              <p><b>Фасад:</b> матовый графит, без ручек. <b>Столешница:</b> под камень. Строго и практично, отпечатков почти не видно.</p>
-              <span class="price v-nums">Как на фото: от <b>62 000 ₽</b> за погонный метр</span>
-            </div>
-            <div data-v-cue="0.17 0.5 0.07 0.07">
-              <h3>Теплый белый</h3>
-              <p><b>Фасад:</b> теплый белый, матовый. <b>Столешница:</b> под дерево или камень. Кухня выглядит светлой и просторной.</p>
-              <span class="price v-nums">Как на фото: от <b>55 000 ₽</b> за погонный метр</span>
-            </div>
-            <div data-v-cue="0.48 0.83 0.07 0.07">
-              <h3>Дуб натуральный</h3>
-              <p><b>Фасад:</b> декор под дуб. <b>Столешница:</b> в тон или контрастная. Теплая фактура дерева, которую любят наши клиенты.</p>
-              <span class="price v-nums">Как на фото: от <b>74 000 ₽</b> за погонный метр</span>
-            </div>
-            <div data-v-cue="0.81 2 0.07 0">
-              <h3>Глубокий зеленый</h3>
-              <p><b>Фасад:</b> глубокий зеленый, матовый. <b>Столешница:</b> под камень. Хорошо сочетается с пеналами под дерево.</p>
-              <span class="price v-nums">Как на фото: от <b>68 000 ₽</b> за погонный метр</span>
-            </div>
-          </div>
-
-          <div class="sw" role="group" aria-label="Выбор фасада">
-            <button class="sw__btn sw__btn--graphite is-on" type="button" data-sw="0"><span>Графит</span><i aria-hidden="true"></i></button>
-            <button class="sw__btn sw__btn--white" type="button" data-sw="1"><span>Белый</span><i aria-hidden="true"></i></button>
-            <button class="sw__btn sw__btn--oak" type="button" data-sw="2"><span>Дуб</span><i aria-hidden="true"></i></button>
-            <button class="sw__btn sw__btn--green" type="button" data-sw="3"><span>Зеленый</span><i aria-hidden="true"></i></button>
-          </div>
-        </div>
-
-        <div class="conf__cta">
-          <a class="v-btn" href="#raschet" data-v-cue="0.6 0.99 0.06 0.03">Рассчитать стоимость</a>
+    <section class="v-section v-section--tight" data-v-act="flow" data-v-drift="#0f1512" id="bystro" aria-label="Быстрый расчет">
+      <div class="v-wrap">
+        <div class="cta-strip" data-v-in data-v-in-self>
+          <p>Пришлите размеры или план, за день дадим предварительный расчет. Шкафы и гардеробные считаем так же.</p>
+          <a class="v-btn" href="#raschet">Рассчитать стоимость</a>
         </div>
       </div>
     </section>
 
-    <!-- 3 · ЦЕНА: сколько стоит, что входит, шкафы и гардеробные отдельными строками -->
+    <section class="v-section" data-v-act="flow" data-v-drift="#131c16" id="onas" aria-label="О производстве">
+      <div class="v-wrap about">
+        <div data-v-in data-v-in-self>
+          <h2 class="v-display v-display--lg">Делаем кухни и шкафы в Кургане с 2016 года</h2>
+          <figure class="about__photo"><img src="assets/ceh-foto.jpg" alt="Мастер Мебельер45 фрезерует деталь в цехе" loading="lazy" width="360" height="360"><figcaption>Наш цех на Омской, 72Б</figcaption></figure>
+        </div>
+        <div data-v-in data-v-stagger="80">
+          <p class="v-body">Собственное производство на Омской, 72Б: современное оборудование для раскроя, кромки и покраски фасадов. Все делаем сами, поэтому отвечаем за срок и качество. За это время изготовили более 2 000 изделий: кухни, шкафы, прихожие, детские, спальни, офисную и торговую мебель для квартир, домов и бизнеса.</p>
+          <p class="v-body">В команде 11 человек. Работаем по Кургану, Тюмени и области, в другие регионы отправляем транспортной компанией. Срок изготовления 30 дней, сборка и монтаж входят в цену, гарантия 12 месяцев.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="v-section v-section--tight" data-v-act="flow" data-v-drift="#101713" id="ceny" aria-label="Сколько стоит">
       <div class="v-wrap price">
         <div class="price__head" data-v-in data-v-in-self>
           <h2 class="v-display v-display--lg">Сколько стоит</h2>
-          <p class="v-body"><span class="edit-mark">Прицениться можно сейчас.</span> В цену входят корпус, фасады, столешница, <span class="edit-mark">фурнитура с доводчиками, мойка и монтаж. Техника и подсветка отдельно.</span></p><p class="v-body" style="margin-top:1em"><span class="edit-mark">Предоплата <b>от 50 %</b> при подписании договора, цена в договоре не меняется. Расчет до замера предварительный, точную смету вместе с 3D-проектом даем после замера и подписания договора. Заказы стоимостью до 20 000 ₽ оплачиваются единовременно, в полном размере.</span> <span class="edit-mark">Есть рассрочка до 6 месяцев без процентов и без банков: первый взнос от 50 %, остаток делим на срок до полугода.</span></p>
+          <p class="v-body">Посчитаем вашу кухню за день по размерам или плану. Ниже ориентиры, от чего отталкиваться.</p><ul class="price__facts"><li><b>Входит в цену:</b> корпус, фасады, столешница, мойка, фурнитура с доводчиками, сборка и монтаж</li><li><b>Отдельно:</b> техника, подсветка, доставка</li><li>Цена в договоре фиксируется и не меняется</li><li>Рассрочка до 6 месяцев без процентов и без банков</li></ul>
         </div>
         <div data-v-in data-v-stagger="80">
           <ul class="price__rows">
             <li>
               <h3>Кухня прямая 3 м</h3>
-              <p><span class="edit-mark">Фасады, столешница, мойка, фурнитура с доводчиками и монтаж. Цена зависит от материалов фасадов и столешницы, фурнитуры и наполнения. Маленькая кухня около 2 м - от 98 000 ₽.</span></p>
+              <p>Фасады, столешница, мойка, фурнитура с доводчиками и монтаж. Цена зависит от материалов фасадов и столешницы, фурнитуры и наполнения. Маленькая кухня около 2 м - от 98 000 ₽.</p>
               <span class="sum v-nums">от 180 000 ₽<small>за кухню целиком</small></span>
             </li>
             <li>
               <h3>Шкаф распашной или купе</h3>
               <p>До потолка, с подсветкой и наполнением под ваши вещи.</p>
-              <span class="sum v-nums">от 75 000 ₽<small><span class="edit-mark">за шкаф 1-2 м до потолка</span></small></span>
+              <span class="sum v-nums">от 75 000 ₽<small>за шкаф 1-2 м до потолка</small></span>
             </li>
             <li>
               <h3>Гардеробная</h3>
@@ -448,88 +546,21 @@
               <span class="sum v-nums">от 120 000 ₽<small>за проект</small></span>
             </li>
           </ul>
+          <p class="price__pay"><b>Оплата.</b> Предоплата от 50 % при подписании договора, заказы до 20 000 ₽ оплачиваются сразу полностью. Расчет до замера предварительный, точную смету даем вместе с 3D-проектом после замера и договора.</p>
           
         </div>
       </div>
     </section>
 
-    <!-- 4 · РАБОТЫ: слоты под фото клиента, 6 мест, мозаика -->
-    <section class="v-section" data-v-act="flow" data-v-drift="#0f1512" id="raboty" aria-label="Наши работы" data-if="работа 1">
-      <div class="v-wrap">
-        <div class="works__head" data-v-in data-v-stagger="60">
-          <h2 class="v-display v-display--lg">Наши работы</h2>
-          <p class="v-body">Кухни, шкафы и прихожие, <span class="edit-mark">которые мы изготовили и смонтировали.</span> Фото из квартир и домов клиентов после монтажа, без ретуши.</p>
-        </div>
-        <ul class="works__grid" data-v-in data-v-stagger="80">
-          <li class="work work--wide"><figure>
-            <img class="work__img" alt="Работа 1: Кухня: зеленые фасады без ручек и пенал под дерево" data-src="assets/work-1-kuhnya-shalfey.jpg" width="1200" height="800" loading="lazy">
-            <div class="work__empty" aria-hidden="true"><span class="v-label">Фото работы</span><b>assets/work-1-kuhnya-shalfey.jpg</b></div>
-            <figcaption><b>Кухня: зеленые фасады без ручек и пенал под дерево</b><br>Фартук и столешница под камень, встроенная техника</figcaption>
-          </figure></li>
-          <li class="work"><figure>
-            <img class="work__img" alt="Работа 2: Бежевая кухня" data-src="assets/work-2-kuhnya-bezh-derevo.jpg" width="900" height="900" loading="lazy">
-            <div class="work__empty" aria-hidden="true"><span class="v-label">Фото работы</span><b>assets/work-2-kuhnya-bezh-derevo.jpg</b></div>
-            <figcaption><b>Бежевая кухня</b><br>Столешница и фартук под дерево</figcaption>
-          </figure></li>
-          <li class="work"><figure>
-            <img class="work__img" alt="Работа 3: Шкаф с зеркалами" data-src="assets/work-3-shkaf-zerkalo.jpg" width="900" height="900" loading="lazy">
-            <div class="work__empty" aria-hidden="true"><span class="v-label">Фото работы</span><b>assets/work-3-shkaf-zerkalo.jpg</b></div>
-            <figcaption><b>Шкаф с зеркалами</b><br>Фасады до потолка</figcaption>
-          </figure></li>
-          <li class="work"><figure>
-            <img class="work__img" alt="Работа 4: Прихожая под дерево" data-src="assets/work-4-prihozhaya.jpg" width="900" height="900" loading="lazy">
-            <div class="work__empty" aria-hidden="true"><span class="v-label">Фото работы</span><b>assets/work-4-prihozhaya.jpg</b></div>
-            <figcaption><b>Прихожая под дерево</b><br>Ниша с подсветкой и сиденьем</figcaption>
-          </figure></li>
-          <li class="work"><figure>
-            <img class="work__img" alt="Работа 5: Рабочее место" data-src="assets/work-5-rabochee-mesto.jpg" width="900" height="900" loading="lazy">
-            <div class="work__empty" aria-hidden="true"><span class="v-label">Фото работы</span><b>assets/work-5-rabochee-mesto.jpg</b></div>
-            <figcaption><b>Рабочее место</b><br>Стол, ящики и рейки</figcaption>
-          </figure></li>
-          <li class="work work--wide"><figure>
-            <img class="work__img" alt="Работа 6: Графитовая кухня до потолка" data-src="assets/work-6-kuhnya-grafit.jpg" width="1200" height="800" loading="lazy">
-            <div class="work__empty" aria-hidden="true"><span class="v-label">Фото работы</span><b>assets/work-6-kuhnya-grafit.jpg</b></div>
-            <figcaption><b>Графитовая кухня до потолка</b><br>Колонна под духовку и СВЧ, ниша под большой холодильник</figcaption>
-          </figure></li>
-                  <li class="work work--more"><figure>
-            <img class="work__img" alt="Работа 7: Угловая кухня: белый верх и пенал под дерево" data-src="assets/work-7-kuhnya-uglovaya-belaya.jpg" width="897" height="1600" loading="lazy">
-            <figcaption><b>Угловая кухня: белый верх и пенал под дерево</b><br>Фартук и столешница под дерево, встроенная духовка</figcaption>
-          </figure></li>
-          <li class="work work--more"><figure>
-            <img class="work__img" alt="Работа 8: П-образная кухня под светлое дерево" data-src="assets/work-8-kuhnya-p-obraznaya.jpg" width="1600" height="1200" loading="lazy">
-            <figcaption><b>П-образная кухня под светлое дерево</b><br>Подсветка рабочей зоны, встроенная техника</figcaption>
-          </figure></li>
-          <li class="work work--more"><figure>
-            <img class="work__img" alt="Работа 9: Кухня под светлый бетон до потолка" data-src="assets/work-9-kuhnya-beton.jpg" width="1200" height="1600" loading="lazy">
-            <figcaption><b>Кухня под светлый бетон до потолка</b><br>Пеналы с длинными ручками, темная столешница</figcaption>
-          </figure></li>
-          <li class="work work--more"><figure>
-            <img class="work__img" alt="Работа 10: Бежевая кухня в частном доме" data-src="assets/work-10-kuhnya-v-dome.jpg" width="1600" height="1200" loading="lazy">
-            <figcaption><b>Бежевая кухня в частном доме</b><br>Фартук под мрамор, вытяжка в шкафу</figcaption>
-          </figure></li>
-          <li class="work work--more"><figure>
-            <img class="work__img" alt="Работа 11: Шкаф под темное дерево" data-src="assets/work-11-shkaf-temnoe-derevo.jpg" width="1200" height="1600" loading="lazy">
-            <figcaption><b>Шкаф под темное дерево</b><br>Двери до потолка, открытые полки сбоку</figcaption>
-          </figure></li>
-          <li class="work work--more"><figure>
-            <img class="work__img" alt="Работа 12: Шкаф вокруг дверного проема" data-src="assets/work-12-shkaf-vokrug-dveri.jpg" width="1280" height="960" loading="lazy">
-            <figcaption><b>Шкаф вокруг дверного проема</b><br>Фасады без ручек, полки и ящики под дерево</figcaption>
-          </figure></li>
-        </ul>
-        <div class="works__more"><button class="works__btn" type="button" aria-expanded="false" data-more="Показать еще работы" data-less="Свернуть">Показать еще работы</button></div>
-      </div>
-    </section>
-
-    <!-- 5 · ДОКАЗАТЕЛЬСТВО: из чего сделано -->
     <section class="v-section" data-v-act="flow" data-v-drift="#101713" id="materialy" aria-label="Материалы">
       <div class="v-wrap mat">
         <div class="v-stack" data-v-in data-v-stagger="60">
-          <h2 class="v-display v-display--lg">Из чего сделано</h2>
+          <h2 class="v-display v-display--lg">Материалы</h2>
           <p class="v-body v-soft">Три вещи, от которых зависит, как мебель выглядит через годы: фасады, столешница и фурнитура. Образцы привозим на замер, цвет и фактуру выбираете вживую.</p>
           <ul class="mat__facts">
-            <li><h3>Фасады: однотонные и под дерево</h3><p><span class="edit-mark">Корпус из ЛДСП, фасады из ЛДСП или МДФ. Большой выбор цветов и фактур: спокойные матовые оттенки, глянец, декор под дерево и камень. Лицевая фурнитура на выбор клиента.</span></p></li>
-            <li><h3>Столешница и фартук в одном стиле</h3><p>Подбираем столешницу и фартук под дерево или камень так, чтобы кухня смотрелась цельно. <span class="edit-mark">Столешницы из ДСП с пластиком или из искусственного камня.</span> Все варианты показываем на образцах.</p></li>
-            <li><h3>Фурнитура с доводчиками</h3><p>Петли и направляющие с доводчиками: дверцы и ящики закрываются мягко и без стука. <span class="edit-mark">Фурнитура на выбор: бюджетная заводская, Firmax, Boyard или премиальные Hettich и Blum.</span></p></li>
+            <li><h3>Фасады: однотонные и под дерево</h3><p>Корпус из ЛДСП, фасады из ЛДСП или МДФ. Большой выбор цветов и фактур: спокойные матовые оттенки, глянец, декор под дерево и камень. Лицевая фурнитура на выбор клиента.</p></li>
+            <li><h3>Столешница и фартук в одном стиле</h3><p>Подбираем столешницу и фартук под дерево или камень так, чтобы кухня смотрелась цельно. Столешницы из ДСП с пластиком или из искусственного камня. Все варианты показываем на образцах.</p></li>
+            <li><h3>Фурнитура с доводчиками</h3><p>Петли и направляющие с доводчиками: дверцы и ящики закрываются мягко и без стука. Фурнитура на выбор: бюджетная заводская, Firmax, Boyard или премиальные Hettich и Blum.</p></li>
           </ul>
         </div>
         <div class="mat__figs">
@@ -549,7 +580,22 @@
       </div>
     </section>
 
-    <!-- 6 · ОПЫТ: что мы знаем после N кухонь, шесть промахов раскрывающимися строками -->
+    <section class="v-section" data-v-act="flow" data-v-drift="#0f1512" id="kak" aria-label="Как заказать">
+      <div class="v-wrap steps">
+        <div class="steps__head" data-v-in data-v-in-self>
+          <h2 class="v-display v-display--lg">Как заказать</h2>
+          <p class="v-body">Пять шагов от первого сообщения до собранной кухни. <b>Ориентир по цене</b> в день обращения, <b>точная смета</b> после замера и договора, <b>дата монтажа</b> в договоре.</p>
+        </div>
+        <ol class="steps__list" data-v-in data-v-stagger="90">
+          <li><span class="num">1</span><div><h3>Размеры и предварительный расчет</h3><p>Присылаете план из ЖК, фото стены с рулеткой или просто длину и высоту. <b>За день</b> отвечаем предварительным расчетом и вариантами фасадов.</p></div></li>
+          <li><span class="num">2</span><div><h3>Замер</h3><p>Замерщик приезжает с лазерным дальномером и образцами фасадов. Замеряем стены и окна, отмечаем, где выходят трубы, вентиляция и розетки.</p></div></li>
+          <li><span class="num">3</span><div><h3>Договор с датой</h3><p>В договоре <b>срок изготовления и дата монтажа</b>. Предоплата <b>от 50 %</b>, цена в договоре не меняется. Заказы до 20 000 ₽ оплачиваются сразу полностью.</p></div></li>
+          <li><span class="num">4</span><div><h3>Проект в 3D и точная смета</h3><p>После замера и подписания договора показываем проект с вашими фасадами и <b>точную смету</b> по нему. Меняем, пока не понравится.</p></div></li>
+          <li><span class="num">5</span><div><h3>Изготовление и монтаж</h3><p>Режем, кромим и красим на своем производстве, каждый фасад сверяем с образцом, который вы держали в руках. Собираем и устанавливаем мебель, упаковку и пыль увозим с собой.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
     <section class="v-section" data-v-act="flow" data-v-drift="#131c16" id="opyt" aria-label="Что мы знаем после сотен кухонь">
       <div class="v-wrap exp">
         <div class="exp__head" data-v-in data-v-in-self>
@@ -569,8 +615,8 @@
             <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>Замерщик приезжает бесплатно и привозит образцы материалов. На месте подсказывает, как лучше расставить шкафы и технику, и предлагает свои варианты, а не просто записывает размеры.</p></div>
           </details>
           <details class="exp__row">
-            <summary><span class="exp__q"><span class="edit-mark">Доплаты в последний момент</span></span><i class="exp__plus" aria-hidden="true"></i></summary>
-            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p><span class="edit-mark">В цене, которую вы видите в договоре, уже есть сборка и монтаж. Доставку и подъем считаем заранее по расстоянию и называем до договора. Никаких сюрпризов в последний момент.</span></p></div>
+            <summary><span class="exp__q">Доплаты в последний момент</span><i class="exp__plus" aria-hidden="true"></i></summary>
+            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>В цене, которую вы видите в договоре, уже есть сборка и монтаж. Доставку и подъем считаем заранее по расстоянию и называем до договора. Никаких сюрпризов в последний момент.</p></div>
           </details>
           <details class="exp__row">
             <summary><span class="exp__q">Кривые стены и полы, а сборщик разводит руками</span><i class="exp__plus" aria-hidden="true"></i></summary>
@@ -578,34 +624,33 @@
           </details>
           <details class="exp__row">
             <summary><span class="exp__q">В маленькой кухне ничего не помещается</span><i class="exp__plus" aria-hidden="true"></i></summary>
-            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>Проектируем под ваши размеры и боремся за каждый сантиметр. Клиенты пишут, что даже в хрущевке после нашей кухни места стало больше. <span class="edit-mark">Также работаем с эскизами заказчиков.</span></p></div>
+            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>Проектируем под ваши размеры и боремся за каждый сантиметр. Клиенты пишут, что даже в хрущевке после нашей кухни места стало больше. Также работаем с эскизами заказчиков.</p></div>
           </details>
           <details class="exp__row">
             <summary><span class="exp__q">После предоплаты тишина</span><i class="exp__plus" aria-hidden="true"></i></summary>
-            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>Пишем вам по этапам и присылаем фото: распил готов, бригада выезжает. Руководитель <span class="edit-mark">Егор Владимирович всегда на связи</span>, поможет с выбором и ответит на вопросы.</p></div>
+            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>Пишем вам по этапам и присылаем фото: распил готов, бригада выезжает. Руководитель Егор Владимирович всегда на связи, поможет с выбором и ответит на вопросы.</p></div>
           </details>
           <details class="exp__row">
             <summary><span class="exp__q">После сборки остаются мусор и пыль</span><i class="exp__plus" aria-hidden="true"></i></summary>
             <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>Сборщики вежливые и убирают за собой: упаковку и обрезки увозим, после нас остается только новая мебель.</p></div>
           </details>
           <details class="exp__row">
-            <summary><span class="exp__q"><span class="edit-mark">Гарантия только на словах</span></span><i class="exp__plus" aria-hidden="true"></i></summary>
-            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p><span class="edit-mark">Гарантия 12 месяцев на все изделие: корпус, фасады и фурнитуру. Если после сборки что-то не так, приезжаем и исправляем, как правило, в течение недели.</span></p></div>
+            <summary><span class="exp__q">Гарантия только на словах</span><i class="exp__plus" aria-hidden="true"></i></summary>
+            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>Гарантия 12 месяцев на все изделие: корпус, фасады и фурнитуру. Если после сборки что-то не так, приезжаем и исправляем, как правило, в течение недели.</p></div>
           </details>
           <details class="exp__row">
-            <summary><span class="exp__q"><span class="edit-mark">За город не выезжают</span></span><i class="exp__plus" aria-hidden="true"></i></summary>
-            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p><span class="edit-mark">Работаем по Кургану, Тюмени и области, делаем заказы и в другие города. Выезд замерщика по Кургану, Тюмени и области бесплатный, доставку считаем по расстоянию.</span></p></div>
+            <summary><span class="exp__q">За город не выезжают</span><i class="exp__plus" aria-hidden="true"></i></summary>
+            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>Работаем по Кургану, Тюмени и области, делаем заказы и в другие города. Выезд замерщика по Кургану, Тюмени и области бесплатный, доставку считаем по расстоянию.</p></div>
           </details>
           <details class="exp__row">
-            <summary><span class="exp__q"><span class="edit-mark">Старую мебель вывозите сами</span></span><i class="exp__plus" aria-hidden="true"></i></summary>
-            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p><span class="edit-mark">По вашему желанию разберем и вывезем старую кухню или шкаф. Это отдельная услуга, стоимость назовем заранее.</span></p></div>
+            <summary><span class="exp__q">Старую мебель вывозите сами</span><i class="exp__plus" aria-hidden="true"></i></summary>
+            <div class="exp__a"><span class="v-label exp__how">Как делаем мы</span><p>По вашему желанию разберем и вывезем старую кухню или шкаф. Это отдельная услуга, стоимость назовем заранее.</p></div>
           </details>
         </div>
         <p class="exp__end" data-v-in data-v-in-self>Нам важно, чтобы после сборки хотелось сказать спасибо. Средняя оценка на 2ГИС <b>5 из 5</b>, и многие приходят к нам снова за следующей мебелью.</p>
       </div>
     </section>
 
-    <!-- 7 · ДОВЕРИЕ: отзывы с Яндекс.Карт, слоты под настоящие (references/отзывы.md) -->
     <section class="v-section v-section--tight" data-v-act="flow" data-v-drift="#121a15" id="otzyvy" aria-label="Отзывы с Яндекс.Карт" data-if="рейтинг">
       <div class="v-wrap reviews">
         <div class="reviews__head" data-v-in data-v-stagger="60">
@@ -634,34 +679,16 @@
       </div>
     </section>
 
-    <!-- 8 · ВЫБОР: как заказать -->
-    <section class="v-section" data-v-act="flow" data-v-drift="#0f1512" id="kak" aria-label="Как заказать">
-      <div class="v-wrap steps">
-        <div class="steps__head" data-v-in data-v-in-self>
-          <h2 class="v-display v-display--lg">Как заказать</h2>
-          <p class="v-body">Пять шагов от первого сообщения до собранной кухни. <b>Ориентир по цене</b> в день обращения, <span class="edit-mark"><b>точная смета</b> после замера и договора</span>, <b>дата монтажа</b> в договоре.</p>
-        </div>
-        <ol class="steps__list" data-v-in data-v-stagger="90">
-          <li><span class="num">1</span><div><h3>Размеры и предварительный расчет</h3><p>Присылаете план из ЖК, фото стены с рулеткой или просто длину и высоту. <b>За день</b> отвечаем предварительным расчетом и вариантами фасадов.</p></div></li>
-          <li><span class="num">2</span><div><h3>Замер</h3><p><span class="edit-mark">Замерщик приезжает с лазерным дальномером и образцами фасадов. Замеряем стены и окна, отмечаем, где выходят трубы, вентиляция и розетки.</span></p></div></li>
-          <li><span class="num">3</span><div><h3>Договор с датой</h3><p>В договоре <b>срок изготовления и дата монтажа</b>. <span class="edit-mark">Предоплата <b>от 50 %</b>, цена в договоре не меняется. Заказы до 20 000 ₽ оплачиваются сразу полностью.</span></p></div></li>
-          <li><span class="num">4</span><div><h3>Проект в 3D и точная смета</h3><p><span class="edit-mark">После замера и подписания договора показываем проект</span> с вашими фасадами и <b>точную смету</b> по нему. Меняем, пока не понравится.</p></div></li>
-          <li><span class="num">5</span><div><h3>Изготовление и монтаж</h3><p>Режем, кромим и красим на своем производстве, каждый фасад сверяем с образцом, который вы держали в руках. <span class="edit-mark">Собираем и устанавливаем мебель, упаковку и пыль увозим с собой.</span></p></div></li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- 9 · ДЕЙСТВИЕ: расчет -->
     <section data-v-act="pin" data-v-span="1.4" data-v-drift="#121a15" id="raschet" aria-label="Рассчитать кухню">
       <div data-v-stage>
         <div class="close" data-v-spotlight>
           <div class="close__inner">
             <h2 class="v-display v-display--lg" data-v-cue="0 2 0 0" data-v-kinetic="lines">Пришлите размеры, за день дадим расчет</h2>
-            <p class="v-lede" data-v-cue="0 2 0 0">Фото стены с рулеткой, план из ЖК или просто длина и высота. Ответим предварительным расчетом, <span class="edit-mark">а точную смету дадим после замера и подписания договора.</span></p>
+            <p class="v-lede" data-v-cue="0 2 0 0">Фото стены с рулеткой, план из ЖК или просто длина и высота. Ответим предварительным расчетом, а точную смету дадим после замера и подписания договора.</p>
             <div class="close__cta" data-v-cue="0 2 0 0" data-v-rise="0">
               <a class="v-btn" href="https://t.me/+79080092009" data-v-magnet="0.22">Рассчитать стоимость</a>
             </div>
-            <p class="close__hint" data-v-cue="0 2 0 0">Ответим в течение рабочего дня. Шкафы и гардеробные считаем так же.</p>
+            <p class="close__hint" data-v-cue="0 2 0 0">Ответим в течение рабочего дня.</p>
             <div class="close__meta" data-v-cue="0 2 0 0">
               <a class="tap" href="tel:+7 (908) 009-20-09">+7 (908) 009-20-09</a>
               <span class="tap">Адрес: <b>&nbsp;ул. Омская, 72Б</b>, Курган</span>
@@ -719,7 +746,7 @@
   // Фирменный ход: конфигуратор фасадов. Четыре кадра одной кухни лежат друг на друге,
   // прозрачность трех верхних ведется от --v-p акта: плато на каждом цвете, кроссфейд между ними.
   (function () {
-    var act = document.getElementById('fasady');
+    var act = document.getElementById('fasady'); if (!act) return;
     var imgs = act.querySelectorAll('.conf__img');
     var sws = act.querySelectorAll('.sw__btn');
     var live = false, lastF = -1, lastN = -1;
@@ -981,5 +1008,67 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
   lb.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 50) show(dx < 0 ? i + 1 : i - 1); });
 })();
 </script>
-</body>
+<script>
+(function () {
+  var nav = document.getElementById('bar-nav'), btn = document.querySelector('.bar__burger');
+  if (!nav) return;
+  function setOpen(v) { nav.classList.toggle('is-open', v); if (btn) btn.setAttribute('aria-expanded', v); }
+  if (btn) btn.addEventListener('click', function () { setOpen(!nav.classList.contains('is-open')); });
+  var links = [].slice.call(nav.querySelectorAll('a'));
+  links.forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+  document.addEventListener('click', function (e) { if (nav.classList.contains('is-open') && !nav.contains(e.target) && e.target !== btn && !btn.contains(e.target)) setOpen(false); });
+  var secs = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
+  function mark() {
+    var y = window.scrollY + window.innerHeight * 0.35, cur = -1;
+    secs.forEach(function (s, i) { if (s && s.getBoundingClientRect().top + window.scrollY <= y) cur = i; });
+    links.forEach(function (a, i) { a.classList.toggle('is-active', i === cur); });
+  }
+  window.addEventListener('scroll', mark, { passive: true }); window.addEventListener('resize', mark); mark();
+})();
+</script><script>
+(function () {
+  var ws = document.querySelector('.ws'); if (!ws) return;
+  var track = ws.querySelector('.ws__track'), slides = ws.querySelectorAll('.ws__slide'), th = ws.querySelectorAll('.ws__thumb');
+  var prev = ws.querySelector('.ws__prev'), next = ws.querySelector('.ws__next'), cnt = ws.querySelector('.ws__count'), box = ws.querySelector('.ws__thumbs');
+  var i = 0, x0 = null, y0 = null;
+  function go(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    track.style.transform = 'translateX(' + (-100 * i) + '%)';
+    cnt.textContent = (i + 1) + ' / ' + slides.length;
+    prev.disabled = i === 0; next.disabled = i === slides.length - 1;
+    th.forEach(function (b, k) { b.classList.toggle('is-on', k === i); });
+    slides.forEach(function (s, k) { s.setAttribute('aria-hidden', k !== i); s.querySelectorAll('a, button').forEach(function (a) { a.tabIndex = k === i ? 0 : -1; }); });
+    var t = th[i]; if (t) box.scrollTo({ left: t.offsetLeft - box.clientWidth / 2 + t.clientWidth / 2, behavior: 'smooth' });
+  }
+  prev.addEventListener('click', function () { go(i - 1); });
+  next.addEventListener('click', function () { go(i + 1); });
+  th.forEach(function (b, k) { b.addEventListener('click', function () { go(k); }); });
+  ws.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  ws.addEventListener('touchend', function (e) { if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null; if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? i + 1 : i - 1); });
+  go(0);
+})();
+</script><div class="vm" role="dialog" aria-modal="true" aria-label="Видео: наши мастера в цехе">
+  <div class="vm__box"><iframe title="Видео: наши мастера в цехе" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe></div>
+  <button class="vm__close" type="button" aria-label="Закрыть видео">&#215;</button>
+  <a class="vm__vk" href="https://vk.ru/clips/id360353153?z=clip360353153_456239054" target="_blank" rel="noopener">Открыть во ВКонтакте</a>
+</div>
+<script>
+(function () {
+  var SRC = 'https://vk.ru/video_ext.php?oid=360353153&id=456239054&hd=2&autoplay=1';
+  var vw = document.querySelector('.vw'), vm = document.querySelector('.vm'), fr = vm.querySelector('iframe'), last = null;
+  // встроенный плеер ВК пишет «Видео недоступно» (клип со страницы, не из сообщества), поэтому открываем клип во ВКонтакте в новой вкладке; когда будет mp4 от заказчика - играть на сайте
+  var USE_MODAL = false;
+  function open() { if (!USE_MODAL) { window.open('', '_blank', 'noopener'); return; } last = document.activeElement; fr.src = SRC; vm.classList.add('is-open'); document.documentElement.style.overflow = 'hidden'; vm.querySelector('.vm__close').focus(); }
+  function close() { vm.classList.remove('is-open'); fr.src = 'about:blank'; document.documentElement.style.overflow = ''; if (last) last.focus(); }
+  document.querySelectorAll('[data-video="ceh"]').forEach(function (b) { b.addEventListener('click', open); });
+  vm.querySelector('.vm__close').addEventListener('click', close);
+  vm.addEventListener('click', function (e) { if (e.target === vm) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && vm.classList.contains('is-open')) close(); });
+  if (vw) {
+  var hidden = false; try { hidden = sessionStorage.getItem('vw-hidden') === '1'; } catch (e) {}
+  if (!hidden) setTimeout(function () { vw.classList.add('is-on'); }, 2500);
+  vw.querySelector('.vw__x').addEventListener('click', function () { vw.classList.remove('is-on'); try { sessionStorage.setItem('vw-hidden', '1'); } catch (e) {} });
+  }
+})();
+</script></body>
 </html>
