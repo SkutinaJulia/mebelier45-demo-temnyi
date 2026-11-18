@@ -458,51 +458,310 @@
       </div>
     </section>
 
-    <section data-v-act="pin" data-v-span="2.6" data-v-drift="#131c16" id="fasady" aria-label="Конфигуратор фасадов">
-      <div data-v-stage>
-        <div class="conf" aria-hidden="true">
-          <img class="conf__img" src="assets/kitchen-base.webp" alt="" width="1920" height="1067">
-          <img class="conf__img" src="assets/kitchen-white.webp" alt="" width="1920" height="1067" loading="lazy">
-          <img class="conf__img" src="assets/kitchen-oak.webp" alt="" width="1920" height="1067" loading="lazy">
-          <img class="conf__img" src="assets/kitchen-green.webp" alt="" width="1920" height="1067" loading="lazy">
+    <section class="v-section" data-v-act="flow" data-v-drift="#101713" id="proekt" aria-label="Конфигуратор кухни">
+      <style>
+  .kc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2.3fr); gap: clamp(1.5rem, 3.5vw, 3.5rem); align-items: start; }
+  .kc__panel { padding-top: 0; } .kc__panel .kc__label { margin-top: 0; }
+  .kc__label { display: block; margin-bottom: var(--v-3); color: var(--v-accent); }
+  .kc__lede { color: var(--v-ink-soft); margin-top: var(--v-4) !important; max-width: 30ch; }
+  .kc__note { margin-top: var(--v-5); color: var(--v-ink-soft); font-size: var(--v-t-xs); max-width: 30ch; }
+  .kc .v-btn { margin-top: var(--v-5); }
+  .kc__bar { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--v-4) clamp(1.5rem, 3vw, 2.75rem); margin-top: var(--v-3); padding-top: var(--v-4); border-top: 1px solid rgb(255 255 255 / .08); }
+  .kc__group h3 { font-size: var(--v-t-xs); letter-spacing: var(--v-track-wide); text-transform: uppercase; color: var(--v-ink-soft); font-weight: 500; margin-bottom: var(--v-2); white-space: nowrap; }
+  .kc__group h3 b { color: var(--v-ink); font-weight: 600; letter-spacing: 0; text-transform: none; font-size: .9rem; margin-left: .35em; }
+  .kc__sw { display: flex; flex-wrap: wrap; gap: .55rem; }
+  .kc__sw button { width: 2.3rem; height: 2.3rem; padding: 0; border-radius: 50%; border: 0; cursor: pointer; background-size: cover; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .18); transition: box-shadow .18s, transform .18s; }
+  .kc__sw button:hover { transform: scale(1.08); }
+  .kc__sw button[aria-pressed="true"] { box-shadow: inset 0 0 0 1px rgb(255 255 255 / .18), 0 0 0 3px var(--v-canvas), 0 0 0 5px var(--v-accent); }
+  .kc__toggles { display: flex; flex-direction: column; align-items: flex-start; gap: .35rem; }
+  .kc__col { display: flex; flex-direction: column; align-items: flex-start; gap: var(--v-4); }
+  .kc__bar { align-items: center; }
+  .kc__tg { display: inline-flex; align-items: center; gap: .6rem; padding: 0; border: 0; background: none; color: var(--v-ink); font: inherit; font-size: .92rem; font-weight: 600; cursor: pointer; min-height: 40px; white-space: nowrap; }
+  .kc__tg i { position: relative; flex: none; width: 2.6rem; height: 1.4rem; border-radius: 999px; background: rgb(255 255 255 / .14); transition: background .2s; }
+  .kc__tg i::after { content: ""; position: absolute; left: .18rem; top: .18rem; width: 1.04rem; height: 1.04rem; border-radius: 50%; background: var(--v-ink); transition: transform .2s; }
+  .kc__tg[aria-pressed="true"] i { background: var(--v-accent); }
+  .kc__tg[aria-pressed="true"] i::after { transform: translateX(1.2rem); }
+  .kc__cap { margin-top: var(--v-1); text-align: center; color: var(--v-ink-soft); font-size: var(--v-t-xs); letter-spacing: var(--v-track-wide); text-transform: uppercase; }
+  .k3 { position: relative; width: 100%; aspect-ratio: 16 / 9.6; -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent), linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); -webkit-mask-composite: source-in; mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent), linear-gradient(to right, transparent, #000 10%, #000 90%, transparent); mask-composite: intersect; }
+  .k3 canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; display: block; }
+  .k3__wait { position: absolute; inset: 0; display: grid; place-items: center; color: var(--v-ink-soft); font-size: var(--v-t-xs); letter-spacing: var(--v-track-wide); text-transform: uppercase; }
+  @media (max-width: 1100px) { .kc { grid-template-columns: 1fr; } }
+  .kc__mob { display: none; margin-top: var(--v-5); }
+  @media (max-width: 1100px) { .kc__panel .v-btn, .kc__panel .kc__note { display: none; } .kc__draw .kc__mob { display: block; } }
+  @media (max-width: 760px) { .k3 { aspect-ratio: 4 / 3.4; } .kc__bar { justify-content: flex-start; } .kc__group { min-width: 0; max-width: 100%; } .kc__sw { flex-wrap: nowrap; gap: .45rem; } .kc__sw button { width: 2.05rem; height: 2.05rem; flex: none; } }
+  .kcf { position: fixed; inset: 0; z-index: 1001; display: none; align-items: center; justify-content: center; padding: 1rem; background: rgb(6 8 7 / .82); font-family: Manrope, "Segoe UI", system-ui, sans-serif; }
+  .kcf.is-open { display: flex; }
+  @media (min-width: 1101px) { .kc__panel { display: flex; flex-direction: column; align-items: flex-start; gap: var(--v-5); } .kc__panel > * { margin: 0 !important; } }   /* на ПК ровные отступы между подписью, заголовком, текстом и кнопкой */
+  .kcf__nw { white-space: nowrap; }   /* номера телефонов не разрываем по строкам */
+  .kcf .lf__box { max-width: 32rem; padding: 1.4rem 1.5rem 1.1rem; } .kcf .lf__title { font-size: 1.4rem; margin-bottom: .25rem; } .kcf .lf__lede { margin-bottom: .75rem; font-size: .9rem; } .kcf .lf__form { gap: .6rem; } .kcf .lf__form input:not([type=checkbox]), .kcf .lf__form textarea { padding: .6rem .75rem; } .kcf .lf__form textarea { min-height: 3.2rem; } .kcf .lf__alt { margin-top: .7rem; font-size: .8rem; } .kcf__row { display: grid; grid-template-columns: 1fr; gap: .6rem; }
+  .kcf__sum { margin: .25rem 0 .75rem; } .kcf .kcf__list { display: none !important; }
+  .kcf__shot { display: block; width: auto; max-width: 100%; height: clamp(80px, 13vh, 130px) !important; width: auto !important; margin: 0 auto; border-radius: 4px; background: #101713; }
+  .kcf__list { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; font-size: .85rem; line-height: 1.35; color: #a09b93; }
+  .kcf__list b { display: block; color: #f2efe9; font-weight: 600; }
+  .v-page .kc button.v-btn { border: 0; cursor: pointer; font-family: inherit; font-weight: 600; font-size: var(--v-t-sm); line-height: inherit; background: var(--v-accent) !important; color: var(--v-accent-ink) !important; }   /* сброс стилей кнопок в шаблоне делал ее прозрачной */
+  @media (max-width: 520px) { .kcf__sum { grid-template-columns: 1fr; } }      </style>
+      <div class="v-wrap kc">
+        <div class="kc__panel" data-v-in data-v-stagger="70">
+          <span class="v-label kc__label">Конфигуратор кухни</span>
+          <h2 class="v-display v-display--lg">Соберите свою кухню</h2>
+          <p class="v-body kc__lede">Выберите фасады и столешницу, включите рифление и подсветку.</p>
+          <p class="kc__note">Цвета на экране примерные. Образцы материалов привозим на замер.</p>
+          <button class="v-btn" type="button" data-kc-order>Рассчитать такую кухню</button>
         </div>
-
-        <div class="conf__top">
-          <div data-v-cue="0 1 0 0" data-v-rise="0">
-            <span class="v-label">Конфигуратор фасадов</span>
-            <h2 class="v-display v-display--md">Одна кухня. Четыре фасада.</h2>
-          </div>
-          <div class="conf__rep">
-            <div data-v-cue="0 0.19 0 0.07">
-              <h3>Матовый графит</h3>
-              <p class="conf__spec"><b>Фасад:</b> матовый графит, без ручек<br><b>Столешница:</b> под камень<br>Строго и практично, отпечатков почти не видно.</p>
+        <div class="kc__draw" data-v-in data-v-in-self>
+          <div class="k3" role="img" aria-label="Кухня в 3D"><span class="k3__wait">Загружаем 3D-модель</span></div>
+          <p class="kc__cap">Пример проекта: прямая кухня 3 м до потолка</p>
+          <div class="kc__bar">
+            <div class="kc__col">
+              <div class="kc__group"><h3>Фасады<b data-kc-name="fac">Зеленый</b></h3><div class="kc__sw" data-kc="fac"></div></div>
+              <div class="kc__group"><h3>Столешница и фартук<b data-kc-name="top">Светлый мрамор</b></h3><div class="kc__sw" data-kc="top"></div></div>
             </div>
-            <div data-v-cue="0.17 0.5 0.07 0.07">
-              <h3>Теплый белый</h3>
-              <p class="conf__spec"><b>Фасад:</b> теплый белый, матовый<br><b>Столешница:</b> под дерево или камень<br>Кухня выглядит светлой и просторной.</p>
-            </div>
-            <div data-v-cue="0.48 0.83 0.07 0.07">
-              <h3>Дуб натуральный</h3>
-              <p class="conf__spec"><b>Фасад:</b> декор под дуб<br><b>Столешница:</b> в тон или контрастная<br>Теплая фактура дерева, которую любят наши клиенты.</p>
-            </div>
-            <div data-v-cue="0.81 2 0.07 0">
-              <h3>Глубокий зеленый</h3>
-              <p class="conf__spec"><b>Фасад:</b> глубокий зеленый, матовый<br><b>Столешница:</b> под камень<br>Хорошо сочетается с пеналами под дерево.</p>
+            <div class="kc__toggles">
+              <button class="kc__tg" type="button" data-kc-tg="ribUp" aria-pressed="false"><i aria-hidden="true"></i>Рифленый верх</button>
+              <button class="kc__tg" type="button" data-kc-tg="ribLow" aria-pressed="false"><i aria-hidden="true"></i>Рифленый низ</button>
+              <button class="kc__tg" type="button" data-kc-tg="lit" aria-pressed="true"><i aria-hidden="true"></i>Подсветка</button>
             </div>
           </div>
-
-          <div class="sw" role="group" aria-label="Выбор фасада">
-            <button class="sw__btn sw__btn--graphite is-on" type="button" data-sw="0"><span>Графит</span><i aria-hidden="true"></i></button>
-            <button class="sw__btn sw__btn--white" type="button" data-sw="1"><span>Белый</span><i aria-hidden="true"></i></button>
-            <button class="sw__btn sw__btn--oak" type="button" data-sw="2"><span>Дуб</span><i aria-hidden="true"></i></button>
-            <button class="sw__btn sw__btn--green" type="button" data-sw="3"><span>Зеленый</span><i aria-hidden="true"></i></button>
-          </div>
-        </div>
-
-        <div class="conf__cta">
-          <a class="v-btn" href="#raschet" data-v-cue="0.6 0.99 0.06 0.03">Рассчитать стоимость</a>
+          <div class="kc__mob"><p class="kc__note">Цвета на экране примерные. Образцы материалов привозим на замер.</p><button class="v-btn" type="button" data-kc-order>Рассчитать такую кухню</button></div>
         </div>
       </div>
+      <div class="kcf" role="dialog" aria-modal="true" aria-labelledby="kcf-title" hidden>
+        <div class="lf__box">
+          <button class="lf__close" type="button" aria-label="Закрыть">&#215;</button>
+          <h2 class="lf__title" id="kcf-title">Рассчитаем вашу кухню</h2>
+          <div class="kcf__sum"><img class="kcf__shot" alt="Кухня, собранная в конфигураторе"><ul class="kcf__list"></ul></div>
+          <p class="lf__lede">Перезвоним в течение рабочего дня и пришлем расчет по этой кухне.</p>
+          <form class="lf__form" novalidate>
+            <input type="hidden" name="config">
+            <div class="kcf__row"><label>Имя<input name="name" autocomplete="name" maxlength="60" required></label>
+            <label>Телефон<input name="phone" type="tel" inputmode="tel" autocomplete="tel" maxlength="20" placeholder="+7 900 000-00-00" required></label></div>
+            <label>Размеры или комментарий, по желанию<textarea name="msg" rows="2" maxlength="1000" placeholder="Например: стена 3 м, потолок 2,7 м"></textarea></label>
+            <label class="lf__agree"><input type="checkbox" name="agree" required><span style="color:#cfc9bf">Даю согласие на обработку персональных данных и принимаю <a href="politika.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
+            <p class="lf__err" role="alert"></p>
+            <button class="v-btn lf__submit" type="submit">Отправить проект</button>
+          </form>
+          <p class="lf__alt">Удобнее написать или позвонить? <a href="https://t.me/+79080092009" target="_blank" rel="noopener">Telegram</a>, <span class="kcf__nw">MAX +7 996 558-00-92</span> или <a class="kcf__nw" href="tel:+79080092009">+7 (908) 009-20-09</a></p>
+        </div>
+      </div>      <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }</script>
+      <script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
+
+const host = document.querySelector('.k3');
+const FAC = [['Зеленый', '#2e5444'], ['Шалфей', '#7e877d'], ['Графит', '#3b3e41'], ['Белый', '#dcd9d1'], ['Кашемир', '#c4b49b'], ['Пепельно-розовый', '#87645f'], ['Темно-синий, фрезеровка', '#24344d', 'mill'], ['Дуб', 'oak']];
+const TOP = [['Светлый мрамор', 'marble-light', .2], ['Темный мрамор', 'marble-dark', .2], ['Бетон', 'concrete', .75], ['Терраццо', 'terrazzo', .35], ['Дуб', 'oak', .5]];
+const state = { fac: 0, top: 0, ribUp: false, ribLow: false, lit: true };
+
+// панель управления работает сразу, 3D подхватывает состояние, когда загрузится
+let apply = () => {};
+function swatches(kind, list, bg) {
+  const box = document.querySelector('[data-kc="' + kind + '"]');
+  list.forEach((o, i) => {
+    const b = document.createElement('button'); b.type = 'button'; b.title = o[0]; b.setAttribute('aria-label', o[0]);
+    b.style.background = bg(o); b.style.backgroundSize = 'cover';
+    b.addEventListener('click', () => { state[kind] = i; ui(); apply(); }); box.appendChild(b);
+  });
+}
+swatches('fac', FAC, o => o[1] === 'oak' ? 'url(assets/tex3d-oak.jpg) center / 300%' : o[1]);
+const topBg = o => 'url(assets/tex3d-' + o[1] + '.jpg) center / 300%';
+swatches('top', TOP, topBg);
+document.querySelectorAll('[data-kc-tg]').forEach(b => b.addEventListener('click', () => { const k = b.dataset.kcTg; state[k] = !state[k]; ui(); apply(); }));
+const LISTS = { fac: FAC, top: TOP };
+function ui() {
+  Object.keys(LISTS).forEach(kind => {
+    document.querySelector('[data-kc-name="' + kind + '"]').textContent = LISTS[kind][state[kind]][0];
+    document.querySelectorAll('[data-kc="' + kind + '"] button').forEach((b, j) => b.setAttribute('aria-pressed', j === state[kind] ? 'true' : 'false'));
+  });
+  document.querySelectorAll('[data-kc-tg]').forEach(b => b.setAttribute('aria-pressed', state[b.dataset.kcTg] ? 'true' : 'false'));
+  host.setAttribute('aria-label', 'Кухня в 3D: фасады ' + FAC[state.fac][0].toLowerCase() + (state.ribUp ? ', рифленый верх' : '') + (state.ribLow ? ', рифленый низ' : '') + ', столешница ' + TOP[state.top][0].toLowerCase() + ', подсветка ' + (state.lit ? 'включена' : 'выключена'));
+}
+ui();
+
+// заявка из конфигуратора: отдельное окно со снимком кухни и выбранными материалами
+const kcf = document.querySelector('.kcf'), kform = kcf.querySelector('form'), kerr = kcf.querySelector('.lf__err');
+let kLast = null;
+function kcSummary() {
+  const rib = state.ribUp && state.ribLow ? 'верх и низ' : state.ribUp ? 'верх' : state.ribLow ? 'низ' : 'нет';
+  return [['Проект', 'Прямая кухня 3 м до потолка'], ['Фасады', FAC[state.fac][0]], ['Рифление', rib], ['Столешница и фартук', TOP[state.top][0]], ['Подсветка', state.lit ? 'да' : 'нет']];
+}
+function kcOpen() {
+  kLast = document.activeElement;
+  const rows = kcSummary();
+  kcf.querySelector('.kcf__list').innerHTML = rows.map(r => '<li>' + r[0] + '<b>' + r[1] + '</b></li>').join('');
+  kform.elements.config.value = rows.map(r => r[0] + ': ' + r[1]).join('; ');
+  const shot = kcf.querySelector('.kcf__shot'), url = window.__kcShot ? window.__kcShot() : '';
+  shot.hidden = !url; if (url) shot.src = url;
+  kcf.hidden = false; kcf.classList.add('is-open'); document.documentElement.style.overflow = 'hidden';
+  setTimeout(() => kform.elements.name.focus(), 30);
+}
+function kcClose() { kcf.classList.remove('is-open'); kcf.hidden = true; document.documentElement.style.overflow = ''; if (kLast) kLast.focus(); }
+document.querySelectorAll('[data-kc-order]').forEach(b => b.addEventListener('click', kcOpen));
+kcf.querySelector('.lf__close').addEventListener('click', kcClose);
+kcf.addEventListener('click', e => { if (e.target === kcf) kcClose(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && !kcf.hidden) kcClose(); });
+kform.addEventListener('submit', e => {
+  e.preventDefault(); const f = kform.elements, bad = [];
+  [f.name, f.phone].forEach(x => x.classList.remove('is-bad'));
+  if (!f.name.value.trim()) bad.push(f.name);
+  if (f.phone.value.replace(/\D/g, '').length < 10) bad.push(f.phone);
+  bad.forEach(x => x.classList.add('is-bad'));
+  if (bad.length) { kerr.textContent = 'Укажите имя и телефон.'; bad[0].focus(); return; }
+  if (!f.agree.checked) { kerr.textContent = 'Отметьте согласие на обработку данных.'; f.agree.focus(); return; }
+  kerr.textContent = '';
+  // при запуске: отправить заявку вместе с полем config (выбранная кухня), потом перейти на «Спасибо»
+  location.href = 'spasibo.html';
+});
+// 3D собираем, только когда блок подъезжает к экрану: первый экран сайта не тормозит
+let started = false;
+const start = () => { if (started) return; started = true; io.disconnect(); init().catch(e => { host.querySelector('.k3__wait').textContent = '3D не загрузилась, обновите страницу'; console.error(e); }); };
+const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) start(); }, { rootMargin: '600px 0px' });
+io.observe(host);
+window.addEventListener('load', () => setTimeout(start, 4000));   // запасной запуск, если браузер не прислал событие прокрутки
+
+async function init() {
+  const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.05;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  RectAreaLightUniformsLib.init();
+  const scene = new THREE.Scene(); scene.background = new THREE.Color('#101713');
+  const pmrem = new THREE.PMREMGenerator(renderer);
+  scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.04).texture;
+
+  const tl = new THREE.TextureLoader();
+  const load = u => tl.loadAsync(u).then(t => { t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); return t; });
+  const [oak, mLight] = await Promise.all(['assets/tex3d-oak.jpg', 'assets/tex3d-marble-light.jpg'].map(load));
+  const topTex = { 'marble-light': mLight };   // остальные столешницы догружаем, когда их выбрали
+  const oakTop = oak.clone(); oakTop.center.set(.5, .5); oakTop.rotation = Math.PI / 2; oakTop.needsUpdate = true;
+
+  const std = (o) => new THREE.MeshStandardMaterial(o);
+  const M = {
+    fac: std({ color: '#2e5444', roughness: .62, envMapIntensity: .55 }),
+    top: std({ color: '#fff', map: mLight, roughness: .22, envMapIntensity: .9 }),
+    apron: std({ color: '#fff', map: mLight, roughness: .22, envMapIntensity: .9 }),
+    carcass: std({ color: '#1a1e1c', roughness: .8 }),
+    plinth: std({ color: '#0b0e0c', roughness: .9 }),
+    gold: std({ color: '#b98f4e', metalness: .9, roughness: .32 }),
+    fridge: std({ color: '#f3f3f0', roughness: .18, envMapIntensity: .8 }),
+    handle: std({ color: '#c9ccc8', metalness: .9, roughness: .25 }),
+    glass: std({ color: '#0b0d0c', roughness: .06, metalness: .3, envMapIntensity: 1.2 }),
+    steel: std({ color: '#9da19d', metalness: .9, roughness: .3 }),
+    black: std({ color: '#121413', roughness: .35, metalness: .4 }),
+    wall: std({ color: '#141c17', roughness: .95, envMapIntensity: .2 }),
+    floor: std({ color: '#0f1512', roughness: .7, envMapIntensity: .3 }),
+    led: new THREE.MeshBasicMaterial({ color: '#fff1d8' })
+  };
+
+  // коробка от угла до угла (метры); UV в метрах, чтобы рисунок дуба и мрамора был в натуральном масштабе
+  function bx(x0, x1, y0, y1, z0, z1, mat, parent = scene, tile = .9) {
+    const w = x1 - x0, h = y1 - y0, d = z1 - z0, g = new THREE.BoxGeometry(w, h, d), uv = g.attributes.uv;
+    const sz = [[d, h], [d, h], [w, d], [w, d], [w, h], [w, h]], ox = Math.random(), oy = Math.random();
+    for (let f = 0; f < 6; f++) for (let k = 0; k < 4; k++) { const i = f * 4 + k; uv.setXY(i, uv.getX(i) * sz[f][0] / tile + ox, uv.getY(i) * sz[f][1] / tile + oy); }
+    const m = new THREE.Mesh(g, mat); m.position.set((x0 + x1) / 2, (y0 + y1) / 2, (z0 + z1) / 2);
+    m.castShadow = m.receiveShadow = true; parent.add(m); return m;
+  }
+  const G = .0035;   // зазор между фасадами
+  // фасад: гладкий, рифленый и с рамочной фрезеровкой, показываем нужный
+  function front(x0, x1, y0, y1, zf, flat, ribbed, mill) {
+    bx(x0 + G, x1 - G, y0 + G, y1 - G, zf - .019, zf, M.fac, flat);
+    const fw = Math.min(.06, (x1 - x0) * .14, (y1 - y0) * .14), a0 = x0 + G, a1 = x1 - G, b0 = y0 + G, b1 = y1 - G;
+    bx(a0, a1, b0, b1, zf - .019, zf - .011, M.fac, mill);                                   // филенка утоплена на 11 мм
+    bx(a0, a1, b1 - fw, b1, zf - .019, zf, M.fac, mill); bx(a0, a1, b0, b0 + fw, zf - .019, zf, M.fac, mill);
+    bx(a0, a0 + fw, b0 + fw, b1 - fw, zf - .019, zf, M.fac, mill); bx(a1 - fw, a1, b0 + fw, b1 - fw, zf - .019, zf, M.fac, mill);
+    bx(a0 + fw, a1 - fw, b0 + fw, b0 + fw + .008, zf - .011, zf - .005, M.fac, mill);       // скос фрезы у нижней кромки рамки
+    const w = x1 - x0 - 2 * G, n = Math.max(3, Math.round(w / .028)), p = w / n;
+    bx(x0 + G, x1 - G, y0 + G, y1 - G, zf - .019, zf - .009, M.fac, ribbed);
+    for (let i = 0; i < n; i++) { const a = x0 + G + i * p; bx(a + .0025, a + p - .0025, y0 + G, y1 - G, zf - .009, zf, M.fac, ribbed); }
+  }
+  const grp = () => { const g = new THREE.Group(); scene.add(g); return g; };
+  const upFlat = grp(), upRib = grp(), upMill = grp(), lowFlat = grp(), lowRib = grp(), lowMill = grp();
+
+  // размеры, м
+  const COL = .6, END = 3.0, PL = .1, BASE = .82, TOPT = .038, TOPY = BASE + TOPT, AP = TOPY + .6, U1 = AP + .9, CEIL = 2.6, DB = .56, DU = .32;
+  // стена, пол
+  bx(-3, 6.5, 0, 4, -.04, 0, M.wall); bx(-3, 6.5, -.02, 0, -.04, 6, M.floor);
+  // колонна: боковины, белый холодильник, шкаф и антресоль над ним
+  bx(0, .018, 0, CEIL, 0, .6, M.fac); bx(COL - .018, COL, 0, CEIL, 0, .6, M.fac);   // боковина колонны до пола
+  bx(.018, COL - .018, 1.86, CEIL, 0, .58, M.carcass);
+  front(0, COL, 1.86, U1, .6, upFlat, upRib, upMill); front(0, COL, U1, CEIL, .6, upFlat, upRib, upMill);
+  bx(.03, COL - .03, .02, 1.84, 0, .6, M.fridge); bx(.03, COL - .03, .02, .7, .6, .625, M.fridge); bx(.03, COL - .03, .705, 1.84, .6, .625, M.fridge);
+  bx(COL - .075, COL - .06, .45, .66, .625, .65, M.handle); bx(COL - .075, COL - .06, .76, 1.05, .625, .65, M.handle);
+  // нижние модули
+  bx(COL, END, 0, PL, 0, DB - .05, M.plinth);
+  const FT = BASE - .03;   // верх нижних фасадов, выше профиль-ручка
+  bx(COL, END, PL, FT, 0, DB - .02, M.carcass); bx(COL, END, FT, BASE, 0, DB - .06, M.carcass);
+  front(COL, .9, PL, FT, DB, lowFlat, lowRib, lowMill);
+  front(.9, 1.5, PL, .2, DB, lowFlat, lowRib, lowMill);
+  bx(.905, 1.495, .206, FT - .004, DB - .02, DB + .002, M.black); bx(.94, 1.46, .26, FT - .12, DB, DB + .004, M.glass);
+  bx(1.0, 1.4, FT - .07, FT - .056, DB + .004, DB + .03, M.handle);
+  front(1.5, 1.9, PL, .52, DB, lowFlat, lowRib, lowMill); front(1.5, 1.9, .545, FT, DB, lowFlat, lowRib, lowMill);
+  bx(1.5, 1.9, .522, .543, DB - .04, DB - .03, M.gold);
+  front(1.9, 2.35, PL, FT, DB, lowFlat, lowRib, lowMill);
+  front(2.35, 2.675, PL, FT, DB, lowFlat, lowRib, lowMill); front(2.675, END, PL, FT, DB, lowFlat, lowRib, lowMill);
+  bx(COL, END, FT + .002, BASE - .002, DB - .055, DB - .035, M.gold);
+  bx(END, END + .018, 0, TOPY, 0, DB + .02, M.fac);              // торцевая панель
+  // столешница, фартук, варочная панель, мойка, смеситель
+  bx(COL, END + .018, BASE, TOPY, 0, DB + .04, M.top, scene, 1.4);
+  bx(COL, END, TOPY, AP, 0, .012, M.apron, scene, 1.4);
+  bx(.96, 1.5, TOPY, TOPY + .005, .06, .56, M.glass);
+  bx(2.42, 2.86, TOPY - .002, TOPY + .003, .07, .49, M.steel);
+  const tap = new THREE.CatmullRomCurve3([new THREE.Vector3(2.64, TOPY, .1), new THREE.Vector3(2.64, TOPY + .26, .1), new THREE.Vector3(2.64, TOPY + .34, .16), new THREE.Vector3(2.64, TOPY + .3, .26), new THREE.Vector3(2.64, TOPY + .22, .28)]);
+  const tm = new THREE.Mesh(new THREE.TubeGeometry(tap, 40, .011, 12), M.black); tm.castShadow = true; scene.add(tm);
+  // верхние шкафы и антресоли до потолка
+  bx(COL, END, AP, CEIL, 0, DU - .02, M.carcass);
+  for (let i = 0; i < 5; i++) { const a = COL + i * .48; front(a, a + .48, AP, U1, DU, upFlat, upRib, upMill); front(a, a + .48, U1, CEIL, DU, upFlat, upRib, upMill); }
+  bx(END, END + .018, AP, CEIL, 0, DU, M.fac);
+  // подсветка под верхними шкафами
+  const led = bx(COL + .03, END - .03, AP - .006, AP, DU - .07, DU - .05, M.led); led.castShadow = false;
+  const rl1 = new THREE.RectAreaLight('#ffc98a', 0, END - COL - .06, .05); rl1.position.set((COL + END) / 2, AP - .008, DU - .06); rl1.lookAt((COL + END) / 2, 0, DU - .06); scene.add(rl1);
+  const rl2 = new THREE.RectAreaLight('#ffc98a', 0, END - COL - .06, .05); rl2.position.set((COL + END) / 2, AP - .008, DU - .1); rl2.lookAt((COL + END) / 2, TOPY, -1.2); scene.add(rl2);
+  // свет
+  const hemi = new THREE.HemisphereLight('#e4ece6', '#151a17', .5); scene.add(hemi);
+  const key = new THREE.DirectionalLight('#fff3e2', 2.2); key.position.set(-1.2, 3.6, 4.2); key.target.position.set(1.5, .9, 0); scene.add(key, key.target);
+  key.castShadow = true; key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -.0004; key.shadow.normalBias = .02;
+  Object.assign(key.shadow.camera, { left: -2.6, right: 2.6, top: 2.2, bottom: -2.2, near: .5, far: 12 });
+  const fill = new THREE.DirectionalLight('#d5e3ff', .45); fill.position.set(5, 2, 3); scene.add(fill);
+
+  // камера: неподвижный ракурс немного справа и сверху; дальность подбираем, чтобы кухня влезала в кадр
+  const camera = new THREE.PerspectiveCamera(26, 1, .1, 50);
+  const target = new THREE.Vector3(1.5, 1.3, .25);
+  function frame() {
+    const w = host.clientWidth, h = host.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h;
+    const vfov = THREE.MathUtils.degToRad(camera.fov), hfov = 2 * Math.atan(Math.tan(vfov / 2) * camera.aspect);
+    const dist = Math.max(1.55 / Math.tan(vfov / 2), 1.85 / Math.tan(hfov / 2)) * 1.0;
+    const yaw = THREE.MathUtils.degToRad(-24), pitch = THREE.MathUtils.degToRad(4);
+    camera.position.set(target.x - Math.sin(yaw) * dist * Math.cos(pitch), target.y + Math.sin(pitch) * dist, target.z + Math.cos(yaw) * dist * Math.cos(pitch));
+    camera.lookAt(target); camera.updateProjectionMatrix();
+  }
+  host.appendChild(renderer.domElement);
+  const render = () => renderer.render(scene, camera);
+  window.__kcShot = () => {   // снимок для заявки: кухня крупно, без пустых полей
+    render(); try { const src = renderer.domElement, w = src.width, h = src.height, cv = document.createElement('canvas'), sx = w * .12, sy = h * .08, sw = w * .76, sh = h * .82;
+      cv.width = 800; cv.height = Math.round(800 * sh / sw); cv.getContext('2d').drawImage(src, sx, sy, sw, sh, 0, 0, cv.width, cv.height); return cv.toDataURL('image/jpeg', .85); } catch (e) { return ''; } };
+
+  apply = () => {
+    const f = FAC[state.fac][1];
+    if (f === 'oak') { M.fac.map = oak; M.fac.color.set('#fff'); M.fac.roughness = .55; } else { M.fac.map = null; M.fac.color.set(f); M.fac.roughness = .62; }
+    M.fac.needsUpdate = true;
+    const t = TOP[state.top][1];
+    if (t === 'oak') M.top.map = oakTop; else if (topTex[t]) M.top.map = topTex[t]; else { load('assets/tex3d-' + t + '.jpg').then(x => { topTex[t] = x; apply(); }); }
+    M.top.roughness = TOP[state.top][2]; M.top.needsUpdate = true;
+    const mill = FAC[state.fac][2] === 'mill';
+    upFlat.visible = !state.ribUp && !mill; upMill.visible = !state.ribUp && mill; upRib.visible = state.ribUp;
+    lowFlat.visible = !state.ribLow && !mill; lowMill.visible = !state.ribLow && mill; lowRib.visible = state.ribLow;
+    M.apron.map = M.top.map; M.apron.roughness = M.top.roughness; M.apron.needsUpdate = true;
+    const on = state.lit;
+    key.intensity = on ? .45 : 2.2; hemi.intensity = on ? .14 : .5; fill.intensity = on ? .12 : .45;
+    renderer.toneMappingExposure = on ? 1.15 : 1.05;
+    rl1.intensity = on ? 30 : 0; rl2.intensity = on ? 18 : 0; led.visible = on;
+    render();
+  };
+  frame(); apply();
+  host.querySelector('.k3__wait').remove();
+  new ResizeObserver(() => { frame(); render(); }).observe(host);
+}
+      </script>
     </section>
 
     <section class="v-section v-section--tight" data-v-act="flow" data-v-drift="#101713" id="cifry" aria-label="О производстве в цифрах">
@@ -954,7 +1213,7 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
       <p class="lf__err" role="alert"></p>
       <button class="v-btn lf__submit" type="submit">Отправить заявку</button>
     </form>
-    <p class="lf__alt">Удобнее написать или позвонить? <a href="https://t.me/+79080092009" target="_blank" rel="noopener">Telegram</a>, MAX +7 996 558-00-92 или <a href="tel:+79080092009">+7 (908) 009-20-09</a></p>
+    <p class="lf__alt">Удобнее написать или позвонить? <a href="https://t.me/+79080092009" target="_blank" rel="noopener">Telegram</a>, <span style="white-space:nowrap">MAX +7 996 558-00-92</span> или <a href="tel:+79080092009" style="white-space:nowrap">+7 (908) 009-20-09</a></p>
   </div>
 </div>
 <div class="fab">
