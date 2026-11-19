@@ -436,6 +436,9 @@
   .vm__box iframe { width: 100%; height: 100%; border: 0; display: block; }
   .vm__close { position: absolute; top: 14px; right: 14px; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgb(255 255 255 / .15); color: #fff; font-size: 26px; cursor: pointer; }
   .vm__vk { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); color: rgb(255 255 255 / .75); font-size: .85rem; }  .hero__rest .v-lede { text-shadow: 0 1px 3px rgb(0 0 0 / .9), 0 0 18px rgb(0 0 0 / .85); }  @media (min-width: 761px) { .hero__rest .v-lede { max-width: 62ch !important; margin-inline: auto; padding: .6rem 1.4rem; border-radius: 14px; background: rgb(8 12 10 / .55); backdrop-filter: blur(3px); } }  /* текст Алены длинный, на ПК заходит на подсвеченную столешницу */
+  .hero__rest .v-lede .hero__pt { display: block; position: relative; padding-left: 1.1rem; } .hero__rest .v-lede .hero__pt + .hero__pt { margin-top: .55rem; } .hero__rest .v-lede .hero__pt::before { content: ""; position: absolute; left: 0; top: .62em; width: .4rem; height: .4rem; border-radius: 50%; background: var(--v-accent); }  @media (min-width: 761px) { .v-page .hero__rest .v-lede { text-align: center; font-size: clamp(1.1rem, 1rem + .45vw, 1.375rem); } .hero__rest .v-lede .hero__pt { padding-left: 0; } .hero__rest .v-lede .hero__pt::before { position: static; display: inline-block; vertical-align: middle; margin: -.15em .55rem 0 0; } }
+  .hero__shade { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; border-radius: 60px; background: rgb(4 7 6 / .92); filter: blur(26px); display: none; }  @media (min-width: 761px) { .hero__shade { display: block; } }
+  @media (min-width: 761px) { .v-page .hero__copy .v-display { font-size: clamp(2.5rem, 4vw, 3.6rem); max-width: 21ch; line-height: 1.08; } .v-page .hero__rest .v-lede { position: relative; isolation: isolate; background: none !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border-radius: 0 !important; } }  @media (max-width: 760px) { .v-page .hero__rest .v-lede { opacity: 1; color: #f3eee4; font-size: 1rem; line-height: 1.5; } .hero__rest .v-lede .hero__pt + .hero__pt { margin-top: .8rem; } .v-page .hero__copy .v-display { text-align: center; align-self: center; margin-inline: auto; } .v-page .hero__rest { align-self: stretch; width: 100%; } .v-page .hero__rest .v-lede { max-width: none !important; display: flex; flex-direction: column; justify-content: space-evenly; } .v-page .hero__rest .v-lede .hero__pt + .hero__pt { margin-top: .8rem; } .v-page .hero__cta { align-self: center; display: flex; justify-content: center; width: 100%; } }
   .v-page .hero__floor { height: 38%; background: linear-gradient(to top, var(--v-canvas) 0%, var(--v-canvas) 12%, rgb(16 23 19 / .6) 55%, transparent 100%); } .conf::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 38%; z-index: 2; pointer-events: none; background: linear-gradient(to bottom, var(--v-canvas) 0%, var(--v-canvas) 12%, rgb(16 23 19 / .6) 55%, transparent 100%); } @media (max-width: 760px) { .v-page .hero__floor { height: 22%; } .conf::before { height: 26%; } .v-page .hero__back img { -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 72%, transparent 100%); mask-image: linear-gradient(to bottom, transparent 0%, #000 42%, #000 72%, transparent 100%); } .v-page .hero__door img { -webkit-mask-image: linear-gradient(to bottom, #000 75%, transparent 100%); mask-image: linear-gradient(to bottom, #000 75%, transparent 100%); } }
 </style>
 </head>
@@ -463,6 +466,7 @@
           <img src="assets/kitchen-base.webp" alt="" width="1920" height="1067">
         </div>
         <div class="hero__veil" aria-hidden="true"></div>
+        <div class="hero__shade" aria-hidden="true"></div>
         <div class="v-layer hero__door" data-v-parallax="-0.3">
           <img src="assets/door.webp" alt="" width="1000" height="1409">
         </div>
@@ -471,7 +475,7 @@
         <div class="hero__copy">
           <h1 class="v-display v-display--xl" data-v-cue="0 0.85 0" data-v-kinetic="lines" data-hero-cue>Кухни и шкафы на заказ в Кургане. Расчет стоимости за один день.</h1>
           <div class="hero__rest" data-v-cue="0 0.85 0" data-v-rise="0" data-hero-cue>
-            <p class="v-lede">Присылаете размеры или план помещения с вашими пожеланиями по мебельному изделию. Рассчитываем предварительную стоимость за один день. Производим замеры, заключаем договор, в котором указываем срок изготовления мебельных изделий, предоставляем 3D-проект.</p>
+            <p class="v-lede"><span class="hero__pt">Присылаете размеры или план помещения с вашими пожеланиями по мебельному изделию.</span> <span class="hero__pt">Рассчитываем предварительную стоимость за один день.</span> <span class="hero__pt">Производим замеры, заключаем договор, в котором указываем срок изготовления мебельных изделий, предоставляем 3D-проект.</span></p>
             <div class="hero__cta"><a class="v-btn" href="#raschet">Рассчитать стоимость</a></div>
           </div>
         </div>
@@ -575,7 +579,7 @@ import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { RectAreaLightUniformsLib } from 'three/addons/lights/RectAreaLightUniformsLib.js';
 
 const host = document.querySelector('.k3');
-const FAC = [['Зеленый', '#2e5444'], ['Шалфей', '#7e877d'], ['Графит', '#3b3e41'], ['Белый', '#dcd9d1'], ['Кашемир', '#c4b49b'], ['Пепельно-розовый', '#87645f'], ['Темно-синий, фрезеровка', '#24344d', 'mill'], ['Дуб', 'oak']];
+const FAC = [['Зеленый', '#34493a'], ['Шалфей', '#7e877d'], ['Графит', '#3b3e41'], ['Белый', '#dcd9d1'], ['Кашемир', '#c4b49b'], ['Пепельно-розовый', '#87645f'], ['Темно-синий, фрезеровка', '#24344d', 'mill'], ['Дуб', 'oak']];
 const TOP = [['Светлый мрамор', 'marble-light', .2], ['Темный мрамор', 'marble-dark', .2], ['Бетон', 'concrete', .75], ['Терраццо', 'terrazzo', .35], ['Дуб', 'oak', .5]];
 const state = { fac: 0, top: 0, ribUp: false, ribLow: false, lit: true };
 
@@ -663,7 +667,7 @@ async function init() {
 
   const std = (o) => new THREE.MeshStandardMaterial(o);
   const M = {
-    fac: std({ color: '#2e5444', roughness: .62, envMapIntensity: .55 }),
+    fac: std({ color: '#34493a', roughness: .62, envMapIntensity: .55 }),
     top: std({ color: '#fff', map: mLight, roughness: .22, envMapIntensity: .9 }),
     apron: std({ color: '#fff', map: mLight, roughness: .22, envMapIntensity: .9 }),
     carcass: std({ color: '#1a1e1c', roughness: .8 }),
@@ -1465,6 +1469,37 @@ document.querySelectorAll('[data-max-copy]').forEach(function (a) {
   if (!hidden) setTimeout(function () { vw.classList.add('is-on'); }, 2500);
   vw.querySelector('.vw__x').addEventListener('click', function () { vw.classList.remove('is-on'); try { sessionStorage.setItem('vw-hidden', '1'); } catch (e) {} });
   }
+})();
+</script><script>
+(function () {
+  var sh = document.querySelector('.hero__shade'), l = document.querySelector('.hero__rest .v-lede'); if (!sh || !l) return;
+  var st = sh.parentElement, rest = l.closest('.hero__rest');
+  function f() {
+    if (window.innerWidth > 760) {
+      var a = l.getBoundingClientRect(), b = st.getBoundingClientRect();
+      if (a.bottom > -200 && a.top < window.innerHeight + 200) {
+        sh.style.left = (a.left - b.left - 56) + 'px'; sh.style.top = (a.top - b.top - 22) + 'px';
+        sh.style.width = (a.width + 112) + 'px'; sh.style.height = (a.height + 44) + 'px';
+        sh.style.opacity = rest ? getComputedStyle(rest).opacity : 1;
+      }
+    }
+    requestAnimationFrame(f);
+  }
+  f();
+})();
+</script><script>
+(function () {
+  var l = document.querySelector('.hero__rest .v-lede'); if (!l) return;
+  function fit() {
+    l.style.minHeight = '';
+    if (window.innerWidth > 760) return;
+    l.style.setProperty('max-width', '30ch', 'important');
+    var h = l.getBoundingClientRect().height;
+    l.style.removeProperty('max-width');
+    l.style.minHeight = h + 'px';
+  }
+  fit(); window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
 })();
 </script></body>
 </html>
